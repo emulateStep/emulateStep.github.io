@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="IT生活," />
 
 
 
@@ -79,14 +79,18 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="分类">
-<meta property="og:url" content="http://yoursite.com/categories/index.html">
+<meta name="description" content="&amp;emsp;&amp;emsp;“十万行代码，十万年薪”，这句很早就流行在程序员之间的名言还是有道理的。年底了，项目也接近尾声，经理要统计项目的总代码量，当时比较忙，也没有当回事，随口说了句就一百万行吧（带上各种第三方），现在想想，代码量可能没有这么多，闲来找到一个用终端统计代码量的方法。">
+<meta name="keywords" content="IT生活">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS项目统计总代码行数统计">
+<meta property="og:url" content="http://yoursite.com/2017/12/29/SecondBlog/index.html">
 <meta property="og:site_name" content="Dear少年">
+<meta property="og:description" content="&amp;emsp;&amp;emsp;“十万行代码，十万年薪”，这句很早就流行在程序员之间的名言还是有道理的。年底了，项目也接近尾声，经理要统计项目的总代码量，当时比较忙，也没有当回事，随口说了句就一百万行吧（带上各种第三方），现在想想，代码量可能没有这么多，闲来找到一个用终端统计代码量的方法。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-08T00:31:50.347Z">
+<meta property="og:updated_time" content="2017-12-29T06:58:53.081Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="分类">
+<meta name="twitter:title" content="iOS项目统计总代码行数统计">
+<meta name="twitter:description" content="&amp;emsp;&amp;emsp;“十万行代码，十万年薪”，这句很早就流行在程序员之间的名言还是有道理的。年底了，项目也接近尾声，经理要统计项目的总代码量，当时比较忙，也没有当回事，随口说了句就一百万行吧（带上各种第三方），现在想想，代码量可能没有这么多，闲来找到一个用终端统计代码量的方法。">
 
 
 
@@ -116,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/categories/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/12/29/SecondBlog/"/>
 
 
 
 
 
-  <title>分类 | Dear少年</title>
+  <title>iOS项目统计总代码行数统计 | Dear少年</title>
   
 
 
@@ -257,40 +261,149 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/29/SecondBlog/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Dear少年">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://img1.touxiang.cn/uploads/20131125/25-034343_597.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dear少年">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-	<h1 class="post-title" itemprop="name headline">分类</h1>
-
-
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
-          <div class="category-all-page">
-            <div class="category-all-title">
-                暂无分类
-            </div>
-            <div class="category-all">
+          <h1 class="post-title" itemprop="name headline">iOS项目统计总代码行数统计</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
               
-            </div>
-          </div>
-        
-      </div>
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-29T14:38:06+08:00">
+                2017-12-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
       
+
+      
+        <p>&emsp;&emsp;“十万行代码，十万年薪”，这句很早就流行在程序员之间的名言还是有道理的。年底了，项目也接近尾声，经理要统计项目的总代码量，当时比较忙，也没有当回事，随口说了句就一百万行吧（带上各种第三方），现在想想，代码量可能没有这么多，闲来找到一个用终端统计代码量的方法。<br><a id="more"></a><br>废话不多说，直接上干货：</p>
+<ol>
+<li>打开终端，使用cd命令定位到需要统计的功能目录，这个相信大家都会。</li>
+<li>输入如下代码：<br><code>$ find . &quot;(&quot; -name &quot;*.m&quot; -or -name &quot;*.mm&quot; -or -name &quot;*.cpp&quot; -or -name &quot;*.h&quot; -or -name &quot;*.rss&quot; &quot;)&quot; -print | xargs wc -l</code></li>
+</ol>
+<p>&emsp;&emsp;接下来终端就会打印出每个文件代码行数和总的代码行数，在此就不给大家截图演示了（PS：实际的代码和一百万差距太大了，(⊙﹏⊙)），快一起来测试你们的代码量！</p>
+
       
     </div>
     
     
     
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/IT生活/" rel="tag"># IT生活</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/12/11/TheBeginningBlog/" rel="next" title="开篇博客">
+                <i class="fa fa-chevron-left"></i> 开篇博客
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
   </div>
 
 
@@ -299,6 +412,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
