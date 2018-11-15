@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="IT生活," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -79,18 +79,17 @@
 
 
 
-<meta name="description" content="&amp;emsp;&amp;emsp;“十万行代码，十万年薪”，这句很早就流行在程序员之间的名言还是有道理的。年底了，项目也接近尾声，经理要统计项目的总代码量，当时比较忙，也没有当回事，随口说了句就一百万行吧（带上各种第三方），现在想想，代码量可能没有这么多，闲来找到一个用终端统计代码量的方法。">
-<meta name="keywords" content="IT生活">
+<meta name="description" content="1.引入头文件#import 2.如果没设置字间距，行间距，断行模式，使用使用默认的，求出label中文字的行数和每一行的内容，使用下面方法：  (NSArray )getLinesArrayOfStringInLabel:(UILabel )label{  NSString text = [label text];UIFont font = [label font];CGRect rect =">
 <meta property="og:type" content="article">
-<meta property="og:title" content="iOS项目统计总代码行数统计">
-<meta property="og:url" content="http://yoursite.com/2017/12/29/SecondBlog/index.html">
+<meta property="og:title" content="iOS中求出label中文字的行数">
+<meta property="og:url" content="http://yoursite.com/2018/10/15/CustomLabelBlog/index.html">
 <meta property="og:site_name" content="Dear少年">
-<meta property="og:description" content="&amp;emsp;&amp;emsp;“十万行代码，十万年薪”，这句很早就流行在程序员之间的名言还是有道理的。年底了，项目也接近尾声，经理要统计项目的总代码量，当时比较忙，也没有当回事，随口说了句就一百万行吧（带上各种第三方），现在想想，代码量可能没有这么多，闲来找到一个用终端统计代码量的方法。">
+<meta property="og:description" content="1.引入头文件#import 2.如果没设置字间距，行间距，断行模式，使用使用默认的，求出label中文字的行数和每一行的内容，使用下面方法：  (NSArray )getLinesArrayOfStringInLabel:(UILabel )label{  NSString text = [label text];UIFont font = [label font];CGRect rect =">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-29T06:58:53.081Z">
+<meta property="og:updated_time" content="2018-11-15T03:32:30.465Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="iOS项目统计总代码行数统计">
-<meta name="twitter:description" content="&amp;emsp;&amp;emsp;“十万行代码，十万年薪”，这句很早就流行在程序员之间的名言还是有道理的。年底了，项目也接近尾声，经理要统计项目的总代码量，当时比较忙，也没有当回事，随口说了句就一百万行吧（带上各种第三方），现在想想，代码量可能没有这么多，闲来找到一个用终端统计代码量的方法。">
+<meta name="twitter:title" content="iOS中求出label中文字的行数">
+<meta name="twitter:description" content="1.引入头文件#import 2.如果没设置字间距，行间距，断行模式，使用使用默认的，求出label中文字的行数和每一行的内容，使用下面方法：  (NSArray )getLinesArrayOfStringInLabel:(UILabel )label{  NSString text = [label text];UIFont font = [label font];CGRect rect =">
 
 
 
@@ -120,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/12/29/SecondBlog/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/10/15/CustomLabelBlog/"/>
 
 
 
 
 
-  <title>iOS项目统计总代码行数统计 | Dear少年</title>
+  <title>iOS中求出label中文字的行数 | Dear少年</title>
   
 
 
@@ -273,7 +272,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/29/SecondBlog/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/15/CustomLabelBlog/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Dear少年">
@@ -290,7 +289,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">iOS项目统计总代码行数统计</h1>
+          <h1 class="post-title" itemprop="name headline">iOS中求出label中文字的行数</h1>
         
 
         <div class="post-meta">
@@ -302,8 +301,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-29T14:38:06+08:00">
-                2017-12-29
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-15T17:00:07+08:00">
+                2018-10-15
               </time>
             
 
@@ -340,12 +339,28 @@
       
 
       
-        <p>&emsp;&emsp;“十万行代码，十万年薪”，这句很早就流行在程序员之间的名言还是有道理的。年底了，项目也接近尾声，经理要统计项目的总代码量，当时比较忙，也没有当回事，随口说了句就一百万行吧（带上各种第三方），现在想想，代码量可能没有这么多，闲来找到一个用终端统计代码量的方法。<br><a id="more"></a><br>废话不多说，直接上干货：</p>
-<ol>
-<li>打开终端，使用cd命令定位到需要统计的功能目录，这个相信大家都会。</li>
-<li>输入如下代码：<br><code>$ find . &quot;(&quot; -name &quot;*.m&quot; -or -name &quot;*.mm&quot; -or -name &quot;*.cpp&quot; -or -name &quot;*.h&quot; -or -name &quot;*.rss&quot; &quot;)&quot; -print | xargs wc -l</code></li>
-</ol>
-<p>&emsp;&emsp;接下来终端就会打印出每个文件代码行数和总的代码行数，在此就不给大家截图演示了（PS：实际的代码和一百万差距太大了，(⊙﹏⊙)），快一起来测试你们的代码量！</p>
+        <p>1.引入头文件#import</p>
+<p>2.如果没设置字间距，行间距，断行模式，使用使用默认的，求出label中文字的行数和每一行的内容，使用下面方法：</p>
+<ul>
+<li>(NSArray <em>)getLinesArrayOfStringInLabel:(UILabel </em>)label{</li>
+</ul>
+<p>NSString <em>text = [label text];<br>UIFont </em>font = [label font];<br>CGRect rect = [label frame];<br><a id="more"></a></p>
+<p>CTFontRef myFont = CTFontCreateWithName(( CFStringRef)([font fontName]), [font pointSize], NULL);<br>NSMutableAttributedString <em>attStr = [[NSMutableAttributedString alloc] initWithString:text];<br>[attStr addAttribute:(NSString </em>)kCTFontAttributeName value:(<strong>bridge  id)myFont range:NSMakeRange(0, attStr.length)];<br>CFRelease(myFont);<br>CTFramesetterRef frameSetter = CTFramesetterCreateWithAttributedString(( CFAttributedStringRef)attStr);<br>CGMutablePathRef path = CGPathCreateMutable();<br>CGPathAddRect(path, NULL, CGRectMake(0,0,rect.size.width,100000));<br>CTFrameRef frame = CTFramesetterCreateFrame(frameSetter, CFRangeMake(0, 0), path, NULL);<br>NSArray <em>lines = ( NSArray </em>)CTFrameGetLines(frame);<br>NSMutableArray *linesArray = [[NSMutableArray alloc]init];<br>for (id line in lines) {<br>CTLineRef lineRef = (</strong>bridge  CTLineRef )line;<br>CFRange lineRange = CTLineGetStringRange(lineRef);<br>NSRange range = NSMakeRange(lineRange.location, lineRange.length);<br>NSString *lineString = [text substringWithRange:range];<br>CFAttributedStringSetAttribute((CFMutableAttributedStringRef)attStr, lineRange, kCTKernAttributeName, (CFTypeRef)([NSNumber numberWithFloat:0.0]));<br>CFAttributedStringSetAttribute((CFMutableAttributedStringRef)attStr, lineRange, kCTKernAttributeName, (CFTypeRef)([NSNumber numberWithInt:0.0]));<br>//NSLog(@”‘’’’’’’’’’’’’’’’’’%@”,lineString);<br>[linesArray addObject:lineString];<br>}</p>
+<p>CGPathRelease(path);<br>CFRelease( frame );<br>CFRelease(frameSetter);<br>return (NSArray *)linesArray;<br>}<br>3.如果自定义行间距，字间距，段子模式等设置</p>
+<p>3.1设置这些参数，封装到一个助手类里面了</p>
+<ul>
+<li>(NSDictionary <em>)setTextLineSpaceWithString:(NSString </em>)string<br>withLineBreakMode:(NSLineBreakMode)lineBreakMode<br>withAlignment:(NSTextAlignment)alignment<br>withFont:(UIFont <em>)font<br>withLineSpace:(CGFloat)lineSpace<br>withTextlengthSpace:(NSNumber </em>)textlengthSpace<br>andParagraphSpaceing:(CGFloat)paragraphSpacing {</li>
+</ul>
+<p>// 1. 创建样式对象<br>NSMutableParagraphStyle <em>style = [[NSMutableParagraphStyle alloc] init];<br>// 2. 每行容纳字符的宽度<br>style.lineBreakMode = lineBreakMode;<br>// 3. 对齐方式<br>style.alignment = alignment;<br>// 4. 设置行间距<br>style.lineSpacing = lineSpace;<br>// 5. 连字符号链接<br>style.hyphenationFactor = 1.0f;<br>// 6. 首行缩进<br>style.firstLineHeadIndent = 0.f;<br>// 7. 段间距<br>style.paragraphSpacing = paragraphSpacing;<br>// 8. 段前间距<br>style.paragraphSpacingBefore = 0.0f;<br>// 9. 除首行之外其他行缩进<br>style.headIndent = 0.0f;<br>// 10. 每行容纳字符的宽度<br>style.tailIndent = 0.0f;<br>NSDictionary </em>dict = @{NSFontAttributeName : font,<br>NSParagraphStyleAttributeName : style,<br>NSKernAttributeName : textlengthSpace,<br>};<br>return dict;<br>}<br>3.2设置label<br>CGFloat contentLabelWidth = kScreenWidth - 36 <em> ScaleNumberWidth;<br>CGFloat kContentFontSize  = 14.f;<br>CGFloat kContentLineSpace = 1.5f;<br>CGFloat kContentTextLengthSpage = 0.8f;<br>contentLabel.size = CGSizeMake(contentLabelWidth, 1);<br>contentLabel.font = CRFontType5(kContentFontSize);<br>contentLabel.numberOfLines = 0;<br>NSDictionary </em>contentDict = [CommonClass setTextLineSpaceWithString:content withLineBreakMode:(NSLineBreakByCharWrapping) withAlignment:(NSTextAlignmentLeft) withFont:CRFontType5(kContentFontSize) withLineSpace:kContentLineSpace  withTextlengthSpace:[NSNumber numberWithFloat:kContentTextLengthSpage] andParagraphSpaceing:0];<br>contentLabel.attributedText = [[NSMutableAttributedString alloc] initWithString:content attributes:contentDict];<br>[contentLabel sizeToFit];<br>contentLabel.center = CGPointMake(kScreenWidth / 2, CGRectGetMaxY(priceLabel.frame) + 20 * ScaleNumberHeight + contentLabel.height / 2);<br>3.3在自定义label参数的情况下，计算label中文字的行数和每一行的内容，修改了NSMutableAttributedString参数</p>
+<ul>
+<li>(NSArray <em>)getLinesArrayOfStringInLabel:(UILabel </em>)label{</li>
+</ul>
+<p>NSString <em>text = [label text];<br>UIFont </em>font = [label font];<br>CGRect rect = [label frame];</p>
+<p>CTFontRef myFont = CTFontCreateWithName(( CFStringRef)([font fontName]), [font pointSize], NULL);<br>CGFloat  kContentFontSize  = 14.f;<br>CGFloat  kContentLineSpace = 1.5f;<br>CGFloat  kContentTextLengthSpage = 0.8f;<br>NSDictionary <em>contentDict = [CommonClass setTextLineSpaceWithString:text withLineBreakMode:(NSLineBreakByCharWrapping) withAlignment:(NSTextAlignmentLeft) withFont:CRFontType5(kContentFontSize) withLineSpace:kContentLineSpace  withTextlengthSpace:[NSNumber numberWithFloat:kContentTextLengthSpage] andParagraphSpaceing:0];<br>NSMutableAttributedString </em>attStr = [[NSMutableAttributedString alloc] initWithString:text attributes:contentDict];<br>[attStr addAttribute:(NSString *)kCTFontAttributeName value:(__bridge  id)myFont range:NSMakeRange(0, attStr.length)];<br>CFRelease(myFont);</p>
+<p>CTFramesetterRef frameSetter = CTFramesetterCreateWithAttributedString(( CFAttributedStringRef)attStr);<br>CGMutablePathRef path = CGPathCreateMutable();<br>CGPathAddRect(path, NULL, CGRectMake(0,0,rect.size.width,100000));<br>CTFrameRef frame = CTFramesetterCreateFrame(frameSetter, CFRangeMake(0, 0), path, NULL);<br>NSArray <em>lines = ( NSArray </em>)CTFrameGetLines(frame);<br>NSMutableArray *linesArray = [[NSMutableArray alloc]init];</p>
+<p>for (id line in lines) {</p>
+<p>CTLineRef lineRef = (__bridge  CTLineRef )line;<br>CFRange lineRange = CTLineGetStringRange(lineRef);<br>NSRange range = NSMakeRange(lineRange.location, lineRange.length);<br>NSString *lineString = [text substringWithRange:range];<br>CFAttributedStringSetAttribute((CFMutableAttributedStringRef)attStr, lineRange, kCTKernAttributeName, (CFTypeRef)([NSNumber numberWithFloat:0.0]));<br>CFAttributedStringSetAttribute((CFMutableAttributedStringRef)attStr, lineRange, kCTKernAttributeName, (CFTypeRef)([NSNumber numberWithInt:0.0]));<br>[linesArray addObject:lineString];<br>}</p>
+<p>CGPathRelease(path);<br>CFRelease( frame );<br>CFRelease(frameSetter);<br>return (NSArray *)linesArray;<br>}</p>
 
       
     </div>
@@ -361,12 +376,6 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/IT生活/" rel="tag"># IT生活</a>
-          
-        </div>
-      
 
       
       
@@ -376,8 +385,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/12/11/TheBeginningBlog/" rel="next" title="开篇博客">
-                <i class="fa fa-chevron-left"></i> 开篇博客
+              <a href="/2018/10/15/CrashBlog/" rel="next" title="9.3系统以下的手机，从AppStore下载的App莫名崩溃">
+                <i class="fa fa-chevron-left"></i> 9.3系统以下的手机，从AppStore下载的App莫名崩溃
               </a>
             
           </div>
@@ -386,8 +395,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/08/06/AGElectronicPrivate/" rel="prev" title="AG电子隐私政策">
-                AG电子隐私政策 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/10/17/POSTBlog/" rel="prev" title="NSURLSessionUploadTask多图片上传">
+                NSURLSessionUploadTask多图片上传 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
