@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="一：介绍1.什么是库？库是共享程序代码的方式，一般分为静态库和动态库。静态库：链接时完整地拷贝至可执行文件中，被多次使用就有多份冗余拷贝。动态库：链接时不复制，程序运行时由系统动态加载到内存，供程序调用，系统只加载一次，多个程序共用，节省内存。 2.两种形式中.framework的区别如上图所示，静态库的形式包含.a和.framework两种形式，动态库的形式包含.dylib和.framework">
+<meta name="description" content="Privacy agreementThis app respects and protects the privacy of all users who use the service. In order to provide you with more accurate and personalized services, this app will use and disclose your">
 <meta property="og:type" content="article">
-<meta property="og:title" content="iOS静态库简单使用与开发">
-<meta property="og:url" content="http://yoursite.com/2018/10/12/iOSFramework/index.html">
+<meta property="og:title" content="斗游隐私政策">
+<meta property="og:url" content="http://yoursite.com/2018/11/18/scoreprivate/index.html">
 <meta property="og:site_name" content="Dear少年">
-<meta property="og:description" content="一：介绍1.什么是库？库是共享程序代码的方式，一般分为静态库和动态库。静态库：链接时完整地拷贝至可执行文件中，被多次使用就有多份冗余拷贝。动态库：链接时不复制，程序运行时由系统动态加载到内存，供程序调用，系统只加载一次，多个程序共用，节省内存。 2.两种形式中.framework的区别如上图所示，静态库的形式包含.a和.framework两种形式，动态库的形式包含.dylib和.framework">
+<meta property="og:description" content="Privacy agreementThis app respects and protects the privacy of all users who use the service. In order to provide you with more accurate and personalized services, this app will use and disclose your">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-11-15T03:31:58.786Z">
+<meta property="og:updated_time" content="2018-12-17T09:03:54.330Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="iOS静态库简单使用与开发">
-<meta name="twitter:description" content="一：介绍1.什么是库？库是共享程序代码的方式，一般分为静态库和动态库。静态库：链接时完整地拷贝至可执行文件中，被多次使用就有多份冗余拷贝。动态库：链接时不复制，程序运行时由系统动态加载到内存，供程序调用，系统只加载一次，多个程序共用，节省内存。 2.两种形式中.framework的区别如上图所示，静态库的形式包含.a和.framework两种形式，动态库的形式包含.dylib和.framework">
+<meta name="twitter:title" content="斗游隐私政策">
+<meta name="twitter:description" content="Privacy agreementThis app respects and protects the privacy of all users who use the service. In order to provide you with more accurate and personalized services, this app will use and disclose your">
 
 
 
@@ -119,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/10/12/iOSFramework/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/11/18/scoreprivate/"/>
 
 
 
 
 
-  <title>iOS静态库简单使用与开发 | Dear少年</title>
+  <title>斗游隐私政策 | Dear少年</title>
   
 
 
@@ -272,7 +272,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/12/iOSFramework/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/18/scoreprivate/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Dear少年">
@@ -289,7 +289,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">iOS静态库简单使用与开发</h1>
+          <h1 class="post-title" itemprop="name headline">斗游隐私政策</h1>
         
 
         <div class="post-meta">
@@ -301,8 +301,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-12T16:40:05+08:00">
-                2018-10-12
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-18T17:02:56+08:00">
+                2018-11-18
               </time>
             
 
@@ -339,28 +339,20 @@
       
 
       
-        <p>一：介绍<br>1.什么是库？<br>库是共享程序代码的方式，一般分为静态库和动态库。<br>静态库：链接时完整地拷贝至可执行文件中，被多次使用就有多份冗余拷贝。<br>动态库：链接时不复制，程序运行时由系统动态加载到内存，供程序调用，系统只加载一次，多个程序共用，节省内存。</p>
-<p>2.两种形式中.framework的区别<br>如上图所示，静态库的形式包含.a和.framework两种形式，动态库的形式包含.dylib和.framework。<br>静态库和动态库都有.framework，但是各有所指，系统的.framework是动态库，我们自己建立的.framework是静态库。</p>
-<p>3.静态库中.a与.framework的区别<br>.a是一个纯二进制文件，.framework中除了有二进制文件之外还有资源文件。 .a文件不能直接使用，至少还有.h文件配合，.framework文件可以直接使用，因为本身包含了h文件和其他文件<br><a id="more"></a><br>4.静态库的优点<br>实现程序的模块化，将固定的业务模块化成静态库。<br>方便共享代码，即可以和别人分享你的代码库，但别人又看不到你代码的实现。<br>开发第三方sdk的需要，例如两个公司之间业务交流，不可能把源代码都发送给另一个公司，这时候将私密内容打包成静态库，别人只能调用接口，而不能知道其中实现的细节。<br>公司项目需要开发出一套同时支持微信支付、支付宝支付、银联支付的sdk，既要满足本公司项目需求，还需要提供给友方公司使用。<br>同时集成三家第三方的支付sdk，其中有大量的配置冲突需要解决。这篇文章通过demo和大家介绍一下如何开发自己的静态库.a文件，分享给大家，同时对工作进行总结。<br>二：静态库的实现<br>Xcode 9.2<br>macOS High Sierra 10.13.2<br>1.新建一个静态库工程<br>如果不结合头文件，静态库是没有用的，静态库编译一组文件，在这些文件中类和方法都以二进制数据的形式存在。<br>在静态库中类分为两类，一类是公开的public，一类是私有的只能内部访问使用。<br>接下来，需要在build栏中添加新的phase，来包含所有头文件。</p>
-<p>在Xcode的Build Phases界面，选择Editor\Add Build Phase\Add Headers Build Phase。<br>Copy Headers下的Public部分中所添加的类均是对外公开的。 这里有三个分组，Public公开的，Private下的头文件是可以被用户看到的，Project下的文件是私有的，这里建议尽量将文件放在Public和Project下。</p>
-<p>3.添加配置<br>添加配置主要是在Build Settings下操作，点击项目名，然后选择YYSDK静态库目标，选择Build Setting栏，然后搜索public header，双击Public Headers Folder Path，在弹出视图中键入如下内容:<br>因为你创建好的静态文件供他人使用，最好禁掉无效代码和debug符号，让用户自己选择对自己的项目有利的部分使用。<br>在搜索框中分别搜索Dead Code Stripping、Strip Debug Symbol During Copy、Strip Style配置如下：<br>Dead Code Stripping设置为NO<br>Strip Debug Symbol During Copy 全部设置为NO<br>Strip Style设置为Non-Global Symbols<br>到目前为止，项目的构建已经完成，选择目标为Generic iOS Device，按下command + B进行编译，工程导航栏中Product目录下libYYSDK.a文件将从红色变为黑色，表明现在该文件已经存在了。右键单击libYYSDK.a，选择Show in Finder，如下图所示：<br>上图就可以看到对外公开的YYSDK.h类，其他实现类均以二进制的形式在libYYSDK.a中。</p>
-<p>4.功能实现<br>这里以实现静态库的开发为主，功能部分实现一个简单的功能demo来举例。<br>在头文件YYSDK.h中实现如下代码：</p>
-<p>#import <foundation foundation.h=""></foundation></p>
-<p>#import <uikit uikit.h=""></uikit></p>
-<p>@interface YYSDK : NSObject</p>
-<p>/**<br>设置label AttributedText 字体, 行间距, 字间距, 段间距</p>
-<p>@param string label上文字<br>@param lineBreakMode 每行容纳字符的宽度<br>@param alignment 对齐方式<br>@param font 字体大小<br>@param lineSpace 行间距<br>@param textlengthSpace 字间距<br>@param paragraphSpacing 段间距<br>@return 存放属性的字典<br>*/</p>
-<ul>
-<li>(NSDictionary <em>)setTextLineSpaceWithString:(NSString </em>)string<br>withLineBreakMode:(NSLineBreakMode)lineBreakMode<br>withAlignment:(NSTextAlignment)alignment<br>withFont:(UIFont <em>)font<br>withLineSpace:(CGFloat)lineSpace<br>withTextlengthSpace:(NSNumber </em>)textlengthSpace<br>andParagraphSpaceing:(CGFloat)paragraphSpacing;</li>
-</ul>
-<p>/**<br>计算label AttributedText 高度</p>
-<p>@param string label展示的文字<br>@param textSize label的size,高度设置为0<br>@param lineBreakMode 每行容纳字符的宽度<br>@param alignment 对齐方式<br>@param font 字体描述<br>@param lineSpace 行间距<br>@param textlengthSpace 字间距<br>@param paragraphSpacing 段间距<br>@return 计算出来的高度<br>*/</p>
-<ul>
-<li>(CGFloat)getSpaceLabelHeight:(NSString <em>)string<br>textSize:(CGSize)textSize<br>withLineBreakMode:(NSLineBreakMode)lineBreakMode<br>withAlignment:(NSTextAlignment)alignment<br>withFont:(UIFont </em>)font<br>withLineSpace:(CGFloat)lineSpace<br>withTextlengthSpace:(NSNumber *)textlengthSpace<br>andParagraphSpaceing:(CGFloat)paragraphSpacing;</li>
-</ul>
-<p>@end<br>在实现文件YYSDK.m中实现代码。</p>
-<p>选择目标为Generic iOS Device，按下command + B进行编译。</p>
-<p>5.合并静态库<br>选择目标为Generic iOS Device，编译运行后，右键单击libYYSDK.a，选择Show in Finder显示的libYYSDK.a可在真机，如果在虚拟机中运行会报错。<br>所以还要选择目标为虚拟机(例如iPhone 8)，然后编译运行,右键单击libYYSDK.a，选择Show in Finder显示的libYYSDK.a可在虚拟机中运行，如果在真机中运行会报错。<br>合并方法：打开终端，输入 lipo -create 真机库.a的路径 模拟器库.a的路径 －output 合成库的名字(可以复制模库.a的路径，修改名字).a；回车就可以在模拟库的文件夹中看到新合成的.a文件了</p>
+        <p>Privacy agreement<br>This app respects and protects the privacy of all users who use the service. In order to provide you with more accurate and personalized services, this app will use and disclose your personal information in accordance with this Privacy Policy. However, this application will treat this information with a high degree of diligence and prudence. Except as otherwise provided in this Privacy Policy, this application will not disclose or provide this information to third parties without your prior permission. This app will update this privacy policy from time to time. By agreeing to this Application Services Use Agreement, you are deemed to have agreed to the entire content of this Privacy Policy. This Privacy Policy is an integral part of this Application Service Agreement.</p>
+<ol>
+<li>Scope of application<br>a) After you use this application web service, you will be able to get your network data to help you choose the reliable carrier.</li>
+<li>Information use<br>a) This application does not provide, sell, rent, share or trade your personal information to any unrelated third party, unless you have obtained your permission in advance, or the third party and this application (including the affiliates of this application) are either individually or jointly You provide the service, and after the service is over, it will be blocked from accessing all of this material that it has previously been able to access.<br>b) This application also does not allow any third party to collect, edit, sell or distribute your personal information by any means. Any user of this application platform who engages in the above activities, once found, the application has the right to immediately terminate the service agreement with the user.<br>c) For the purpose of serving the User, the App may use the information you use to provide you with information of interest to you, including but not limited to, to send you product and service information, or to share information with the App Partner so that they may You send information about its products and services (the latter requires your prior consent).</li>
+<li>Information disclosure<br>In the following circumstances, this application will disclose your personal information in whole or in part according to your personal wishes or the law:<br>a) disclose to third parties with your prior consent;<br>b) in order to provide the products and services you request, you must share your personal information with third parties;<br>c) disclosure to third parties or administrative or judicial authorities in accordance with the relevant provisions of the law, or at the request of the administrative or judicial authorities;<br>d) If you have violated relevant Chinese laws, regulations or this application service agreement or related rules, you need to disclose it to third parties;<br>e) If you are a qualified IP Complainant and have filed a complaint, it should be disclosed to the Respondent at the request of the Complainant so that both parties can handle possible rights disputes;<br>f) Other disclosures that this application considers appropriate in accordance with laws, regulations or website policies.</li>
+<li>Information security<br>a) We will not submit or upload your information, so your information is absolutely safe<br>隐私协议</li>
+</ol>
+<p>本应用尊重并保护所有使用服务用户的个人隐私权。为了给您提供更准确、更有个性化的服务，本应用会按照本隐私权政策的规定使用和披露您的个人信息。但本应用将以高度的勤勉、审慎义务对待这些信息。除本隐私权政策另有规定外，在未征得您事先许可的情况下，本应用不会将这些信息对外披露或向第三方提供。本应用会不时更新本隐私权政策。 您在同意本应用服务使用协议之时，即视为您已经同意本隐私权政策全部内容。本隐私权政策属于本应用服务使用协议不可分割的一部分。</p>
+<ol>
+<li>适用范围<br>a) 在您使用本应用网络服务，进行您获取网络数据以帮助您选择靠谱的运营商。</li>
+<li>信息使用<br>a) 本应用不会向任何无关第三方提供、出售、出租、分享或交易您的个人信息，除非事先得到您的许可，或该第三方和本应用（含本应用关联公司）单独或共同为您提供服务，且在该服务结束后，其将被禁止访问包括其以前能够访问的所有这些资料。<br>b) 本应用亦不允许任何第三方以任何手段收集、编辑、出售或者无偿传播您的个人信息。任何本应用平台用户如从事上述活动，一经发现，本应用有权立即终止与该用户的服务协议。<br>c) 为服务用户的目的，本应用可能通过使用您的个人信息，向您提供您感兴趣的信息，包括但不限于向您发出产品和服务信息，或者与本应用合作伙伴共享信息以便他们向您发送有关其产品和服务的信息（后者需要您的事先同意）。</li>
+<li>信息披露<br>在如下情况下，本应用将依据您的个人意愿或法律的规定全部或部分的披露您的个人信息：<br>a) 经您事先同意，向第三方披露；<br>b) 为提供您所要求的产品和服务，而必须和第三方分享您的个人信息；<br>c) 根据法律的有关规定，或者行政或司法机构的要求，向第三方或者行政、司法机构披露；<br>d) 如您出现违反中国有关法律、法规或者本应用服务协议或相关规则的情况，需要向第三方披露；<br>e) 如您是适格的知识产权投诉人并已提起投诉，应被投诉人要求，向被投诉人披露，以便双方处理可能的权利纠纷；<br>f) 其它本应用根据法律、法规或者网站政策认为合适的披露。</li>
+<li>信息安全<br>a) 我们不会将您的信息提交或者上传，所以您的信息绝对安全</li>
+</ol>
 
       
     </div>
@@ -385,8 +377,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/10/05/privateMD/" rel="next" title="隐私政策">
-                <i class="fa fa-chevron-left"></i> 隐私政策
+              <a href="/2018/11/10/CrashTongji/" rel="next" title="iOS应用的crash日志的分析基础">
+                <i class="fa fa-chevron-left"></i> iOS应用的crash日志的分析基础
               </a>
             
           </div>
@@ -394,10 +386,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/10/13/happyBillPost/" rel="prev" title="爱尚记账隐私政策">
-                爱尚记账隐私政策 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
