@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="MVVM是Model-View-ViewModel的简写。  微软的WPF带来了新的技术体验，如Silverlight、音频、视频、3D、动画……，这导致了软件UI层更加细节化、可定制化。同时，在技术层面，WPF也带来了 诸如Binding、Dependency Property、Routed Events、Command、DataTemplate、ControlTemplate等新特性。 MVV">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MVVM框架">
+<meta property="og:url" content="http://yoursite.com/2018/12/27/MVVM框架/index.html">
+<meta property="og:site_name" content="Dear少年">
+<meta property="og:description" content="MVVM是Model-View-ViewModel的简写。  微软的WPF带来了新的技术体验，如Silverlight、音频、视频、3D、动画……，这导致了软件UI层更加细节化、可定制化。同时，在技术层面，WPF也带来了 诸如Binding、Dependency Property、Routed Events、Command、DataTemplate、ControlTemplate等新特性。 MVV">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://raw.githubusercontent.com/937447974/Blog/master/Resources/2015112802.png">
+<meta property="og:updated_time" content="2018-12-27T06:35:54.052Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MVVM框架">
+<meta name="twitter:description" content="MVVM是Model-View-ViewModel的简写。  微软的WPF带来了新的技术体验，如Silverlight、音频、视频、3D、动画……，这导致了软件UI层更加细节化、可定制化。同时，在技术层面，WPF也带来了 诸如Binding、Dependency Property、Routed Events、Command、DataTemplate、ControlTemplate等新特性。 MVV">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/937447974/Blog/master/Resources/2015112802.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/12/27/MVVM框架/"/>
+
+
+
+
+
+  <title>MVVM框架 | Dear少年</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Dear少年</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-schedule">
+          <a href="/schedule/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br />
+            
+            日程表
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/27/MVVM框架/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Dear少年">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://img1.touxiang.cn/uploads/20131125/25-034343_597.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dear少年">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">MVVM框架</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-27T14:35:23+08:00">
+                2018-12-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>MVVM是Model-View-ViewModel的简写。 </p>
+<p>微软的WPF带来了新的技术体验，如Silverlight、音频、视频、3D、动画……，这导致了软件UI层更加细节化、可定制化。同时，在技术层面，WPF也带来了 诸如Binding、Dependency Property、Routed Events、Command、DataTemplate、ControlTemplate等新特性。</p>
+<p>MVVM（Model-View-ViewModel）框架的由来便是MVP（Model-View-Presenter）模式与WPF结合的应用方式时发展演变过来的一种新型架构框架。它立足于原有MVP框架并且把WPF的新特性糅合进去，以应对客户日益复杂的需求变化。<br><a id="more"></a></p>
+<h1 id="1-简介"><a href="#1-简介" class="headerlink" title="1 简介"></a>1 简介</h1><p>WPF的数据绑定与Presentation Model相结合是非常好的做法,使得开发人员可以将View和逻辑分离出来,但这种数据绑定技术非常简单实用，也是WPF所特有的，所以我们又称之为Model-View-ViewModel(MVVM)。 </p>
+<p>这种模式跟经典的MVP（Model-View-Presenter）模式很相似，除了你需要一个为View量身定制的model，这个model就是ViewModel。ViewModel包含所有由UI特定的接口和属性，并由一个 ViewModel 的视图的绑定属性，并可获得二者之间的松散耦合，所以需要在ViewModel 直接更新视图中编写相应代码。 </p>
+<p>数据绑定系统还支持提供了标准化的方式传输到视图的验证错误的输入的验证。 </p>
+<h1 id="2-优点"><a href="#2-优点" class="headerlink" title="2 优点"></a>2 优点</h1><p>低耦合。视图（View）可以独立于Model变化和修改，一个ViewModel可以绑定到不同的”View”上，当View变化的时候Model可以不变，当Model变化的时候View也可以不变。</p>
+<p>可重用性。你可以把一些视图逻辑放在一个ViewModel里面，让很多view重用这段视图逻辑。</p>
+<p>独立开发。开发人员可以专注于业务逻辑和数据的开发（ViewModel），设计人员可以专注于页面设计，使用Expression Blend可以很容易设计界面并生成xaml代码。</p>
+<p>可测试。界面素来是比较难于测试的，而现在测试可以针对ViewModel来写。 </p>
+<h1 id="3-MVVM结构图"><a href="#3-MVVM结构图" class="headerlink" title="3 MVVM结构图"></a>3 MVVM结构图</h1><p><img src="https://raw.githubusercontent.com/937447974/Blog/master/Resources/2015112802.png" alt=""></p>
+<h1 id="4-架构实现"><a href="#4-架构实现" class="headerlink" title="4 架构实现"></a>4 架构实现</h1><h2 id="4-1-Model层"><a href="#4-1-Model层" class="headerlink" title="4.1 Model层"></a>4.1 Model层</h2><p>Model层和MVP框架的模型层使用同样的代码结构。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">//  YJModel.swift</span></span><br><span class="line"><span class="comment">//  MVP</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">//  CSDN:http://blog.csdn.net/y550918116j</span></span><br><span class="line"><span class="comment">//  GitHub:https://github.com/937447974/Blog</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">//  Created by yangjun on 16/1/15.</span></span><br><span class="line"><span class="comment">//  Copyright © 2016年 阳君. All rights reserved.</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> Foundation</span><br><span class="line"></span><br><span class="line"><span class="comment">/// 模型层的协议</span></span><br><span class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">YJModelProtocol</span> </span>&#123;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">execute</span><span class="params">(model: YJModel)</span></span></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/// model层，处理与服务器的响应</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">YJModel</span>: <span class="title">NSObject</span> </span>&#123;</span><br><span class="line"></span><br><span class="line"><span class="comment">/// 相关数据，发送到服务器的数据以及从服务器接收的数据</span></span><br><span class="line"><span class="keyword">var</span> data: <span class="type">Dictionary</span>&lt;<span class="type">String</span>, <span class="type">AnyObject</span>&gt;?</span><br><span class="line"><span class="comment">/// 回调代理</span></span><br><span class="line"><span class="keyword">var</span> delegate: <span class="type">YJModelProtocol</span>?</span><br><span class="line"></span><br><span class="line"><span class="comment">/// 向服务器发送数据</span></span><br><span class="line"><span class="comment">///</span></span><br><span class="line"><span class="comment">/// - returns: void</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">sendRequest</span><span class="params">()</span></span> &#123;</span><br><span class="line"><span class="built_in">print</span>(<span class="string">"\nModel Begin============"</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">"Model收到通知开始请求服务器"</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">"服务器接收数据:<span class="subst">\(<span class="keyword">self</span>.data)</span>"</span>)</span><br><span class="line"><span class="keyword">if</span> <span class="keyword">self</span>.data == <span class="literal">nil</span> &#123;</span><br><span class="line"><span class="keyword">self</span>.data = <span class="type">Dictionary</span>()</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">self</span>.data![<span class="string">"qq"</span>] = <span class="string">"937447974"</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">"服务器数据处理完毕，回发中..."</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">"Model收到服务器发回的数据，通知上一层"</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">"Model End============"</span>)</span><br><span class="line"><span class="keyword">self</span>.delegate?.execute(<span class="keyword">self</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>定义了一个模型类Model以及网络回调协议ModelProtocol。当外部调用类遵循这种协议时即可回调数据。</p>
+<h2 id="4-2-ViewModel层"><a href="#4-2-ViewModel层" class="headerlink" title="4.2 ViewModel层"></a>4.2 ViewModel层</h2><p>ViewModel优化了MVP中Presenter层，让View层彻底解放，只关心界面的展示。服务器返回的数据，在这一层就处理完毕了。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">//  YJViewModel.swift</span></span><br><span class="line"><span class="comment">//  MVVM</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">//  CSDN:http://blog.csdn.net/y550918116j</span></span><br><span class="line"><span class="comment">//  GitHub:https://github.com/937447974/Blog</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">//  Created by yangjun on 16/1/15.</span></span><br><span class="line"><span class="comment">//  Copyright © 2016年 阳君. All rights reserved.</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> UIKit</span><br><span class="line"></span><br><span class="line"><span class="comment">/// ViewModel层的协议,view层实现</span></span><br><span class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">YJViewModelProtocol</span> </span>&#123;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 定义一系列通知UI的接口</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">execute</span><span class="params">(viewModel: YJViewModel)</span></span></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/// ViewModel完全把Model和View进行了分离，主要的程序逻辑在ViewModel里实现。</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">YJViewModel</span>: <span class="title">YJModelProtocol</span> </span>&#123;</span><br><span class="line"></span><br><span class="line"><span class="comment">/// 姓名</span></span><br><span class="line"><span class="keyword">var</span> name: <span class="type">String</span>?</span><br><span class="line"><span class="comment">/// view层代理</span></span><br><span class="line"><span class="keyword">var</span> delegate: <span class="type">YJViewModelProtocol</span>?</span><br><span class="line"></span><br><span class="line"><span class="comment">// 开始数据准备</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">initData</span><span class="params">()</span></span> &#123;</span><br><span class="line"><span class="built_in">print</span>(<span class="string">"\nViewModel Begin++++++++++++"</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">"ViewModel层收到UI指令"</span>)</span><br><span class="line"><span class="comment">// 向服务器发送数据</span></span><br><span class="line"><span class="keyword">let</span> model = <span class="type">YJModel</span>()</span><br><span class="line">model.data = <span class="type">Dictionary</span>()</span><br><span class="line">model.data![<span class="string">"name"</span>] = <span class="string">"阳君"</span></span><br><span class="line">model.delegate = <span class="keyword">self</span> <span class="comment">// 当前类接收数据</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">"开始请求Model层获取数据"</span>)</span><br><span class="line">model.sendRequest()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">execute</span><span class="params">(model: YJModel)</span></span> &#123;</span><br><span class="line"><span class="built_in">print</span>(<span class="string">"\nViewModel层收到Model层数据：<span class="subst">\(model.data)</span>"</span>)</span><br><span class="line"><span class="keyword">self</span>.name = model.data?[<span class="string">"name"</span>] <span class="keyword">as</span>? <span class="type">String</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">"ViewModel层通知UI层，数据已准备"</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">"ViewModel End++++++++++++"</span>)</span><br><span class="line"><span class="keyword">self</span>.delegate?.execute(<span class="keyword">self</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="4-4-View层"><a href="#4-4-View层" class="headerlink" title="4.4 View层"></a>4.4 View层</h2><p>View层就是ViewController了。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">//  ViewController.swift</span></span><br><span class="line"><span class="comment">//  MVVM</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">//  Created by yangjun on 16/1/15.</span></span><br><span class="line"><span class="comment">//  Copyright © 2016年 阳君. All rights reserved.</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> UIKit</span><br><span class="line"></span><br><span class="line"><span class="comment">/// View层</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">YJViewController</span>: <span class="title">UIViewController</span>, <span class="title">YJViewModelProtocol</span> </span>&#123;</span><br><span class="line"></span><br><span class="line"><span class="comment">/// 姓名</span></span><br><span class="line"><span class="meta">@IBOutlet</span> <span class="keyword">weak</span> <span class="keyword">var</span> name: <span class="type">UILabel</span>!</span><br><span class="line"><span class="comment">/// Presenter层</span></span><br><span class="line"><span class="keyword">var</span> viewModel = <span class="type">YJViewModel</span>()</span><br><span class="line"></span><br><span class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">viewDidLoad</span><span class="params">()</span></span> &#123;</span><br><span class="line"><span class="keyword">super</span>.viewDidLoad()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">"View Begin------------"</span>)</span><br><span class="line"><span class="keyword">self</span>.viewModel.delegate = <span class="keyword">self</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">"View层发出指令通知Presenter层"</span>)</span><br><span class="line"><span class="keyword">self</span>.viewModel.initData()<span class="comment">// 初始化数据</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// MARK: - YJViewModelProtocol</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">execute</span><span class="params">(viewModel: YJViewModel)</span></span> &#123;</span><br><span class="line"><span class="built_in">print</span>(<span class="string">"\nView层收到Presenter层通知"</span>)</span><br><span class="line"><span class="keyword">self</span>.name.text = viewModel.name</span><br><span class="line"><span class="built_in">print</span>(<span class="string">"View End------------"</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>从代码中可以看出业务逻辑已经完全扔给ViewModel做处理了。</p>
+<h2 id="4-4-测试"><a href="#4-4-测试" class="headerlink" title="4.4 测试"></a>4.4 测试</h2><p>运行项目后可看见如下输出效果,会发现层与层之间的关系非常清晰，代码的可维护度非常高。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">View</span> <span class="type">Begin</span>------------</span><br><span class="line"><span class="type">View</span>层发出指令通知<span class="type">Presenter</span>层</span><br><span class="line"></span><br><span class="line"><span class="type">ViewModel</span> <span class="type">Begin</span>++++++++++++</span><br><span class="line"><span class="type">ViewModel</span>层收到<span class="type">UI</span>指令</span><br><span class="line">开始请求<span class="type">Model</span>层获取数据</span><br><span class="line"></span><br><span class="line"><span class="type">Model</span> <span class="type">Begin</span>============</span><br><span class="line"><span class="type">Model</span>收到通知开始请求服务器</span><br><span class="line">服务器接收数据:<span class="type">Optional</span>([<span class="string">"name"</span>: 阳君])</span><br><span class="line">服务器数据处理完毕，回发中...</span><br><span class="line"><span class="type">Model</span>收到服务器发回的数据，通知上一层</span><br><span class="line"><span class="type">Model</span> <span class="type">End</span>============</span><br><span class="line"></span><br><span class="line"><span class="type">ViewModel</span>层收到<span class="type">Model</span>层数据：<span class="type">Optional</span>([<span class="string">"qq"</span>: <span class="number">937447974</span>, <span class="string">"name"</span>: 阳君])</span><br><span class="line"><span class="type">ViewModel</span>层通知<span class="type">UI</span>层，数据已准备</span><br><span class="line"><span class="type">ViewModel</span> <span class="type">End</span>++++++++++++</span><br><span class="line"></span><br><span class="line"><span class="type">View</span>层收到<span class="type">Presenter</span>层通知</span><br><span class="line"><span class="type">View</span> <span class="type">End</span>------------</span><br></pre></td></tr></table></figure>
+<p>&#160;</p>
+<hr>
+<h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><h2 id="源代码"><a href="#源代码" class="headerlink" title="源代码"></a>源代码</h2><p><a href="https://github.com/937447974/Framework" target="_blank" rel="noopener">Framework</a></p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="http://baike.baidu.com/view/3507915.htm" target="_blank" rel="noopener">MVVM</a></p>
+<h2 id="文档修改记录"><a href="#文档修改记录" class="headerlink" title="文档修改记录"></a>文档修改记录</h2><table>
+<thead>
+<tr>
+<th>时间</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2015-11-28</td>
+<td>博文完成</td>
+</tr>
+</tbody>
+</table>
+<h2 id="版权所有"><a href="#版权所有" class="headerlink" title="版权所有"></a>版权所有</h2><p>CSDN：<a href="http://blog.csdn.net/y550918116j" target="_blank" rel="noopener">http://blog.csdn.net/y550918116j</a></p>
+<p>GitHub：<a href="https://github.com/937447974/Blog" target="_blank" rel="noopener">https://github.com/937447974/Blog</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/11/18/scoreprivate/" rel="next" title="斗游隐私政策">
+                <i class="fa fa-chevron-left"></i> 斗游隐私政策
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="http://img1.touxiang.cn/uploads/20131125/25-034343_597.jpg"
+                alt="Dear少年" />
+            
+              <p class="site-author-name" itemprop="name">Dear少年</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-简介"><span class="nav-number">1.</span> <span class="nav-text"><a href="#1-&#x7B80;&#x4ECB;" class="headerlink" title="1 &#x7B80;&#x4ECB;"></a>1 &#x7B80;&#x4ECB;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-优点"><span class="nav-number">2.</span> <span class="nav-text"><a href="#2-&#x4F18;&#x70B9;" class="headerlink" title="2 &#x4F18;&#x70B9;"></a>2 &#x4F18;&#x70B9;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-MVVM结构图"><span class="nav-number">3.</span> <span class="nav-text"><a href="#3-MVVM&#x7ED3;&#x6784;&#x56FE;" class="headerlink" title="3 MVVM&#x7ED3;&#x6784;&#x56FE;"></a>3 MVVM&#x7ED3;&#x6784;&#x56FE;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-架构实现"><span class="nav-number">4.</span> <span class="nav-text"><a href="#4-&#x67B6;&#x6784;&#x5B9E;&#x73B0;" class="headerlink" title="4 &#x67B6;&#x6784;&#x5B9E;&#x73B0;"></a>4 &#x67B6;&#x6784;&#x5B9E;&#x73B0;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-Model层"><span class="nav-number">4.1.</span> <span class="nav-text"><a href="#4-1-Model&#x5C42;" class="headerlink" title="4.1 Model&#x5C42;"></a>4.1 Model&#x5C42;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-ViewModel层"><span class="nav-number">4.2.</span> <span class="nav-text"><a href="#4-2-ViewModel&#x5C42;" class="headerlink" title="4.2 ViewModel&#x5C42;"></a>4.2 ViewModel&#x5C42;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-4-View层"><span class="nav-number">4.3.</span> <span class="nav-text"><a href="#4-4-View&#x5C42;" class="headerlink" title="4.4 View&#x5C42;"></a>4.4 View&#x5C42;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-4-测试"><span class="nav-number">4.4.</span> <span class="nav-text"><a href="#4-4-&#x6D4B;&#x8BD5;" class="headerlink" title="4.4 &#x6D4B;&#x8BD5;"></a>4.4 &#x6D4B;&#x8BD5;</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#其他"><span class="nav-number">5.</span> <span class="nav-text"><a href="#&#x5176;&#x4ED6;" class="headerlink" title="&#x5176;&#x4ED6;"></a>&#x5176;&#x4ED6;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#源代码"><span class="nav-number">5.1.</span> <span class="nav-text"><a href="#&#x6E90;&#x4EE3;&#x7801;" class="headerlink" title="&#x6E90;&#x4EE3;&#x7801;"></a>&#x6E90;&#x4EE3;&#x7801;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">5.2.</span> <span class="nav-text"><a href="#&#x53C2;&#x8003;&#x8D44;&#x6599;" class="headerlink" title="&#x53C2;&#x8003;&#x8D44;&#x6599;"></a>&#x53C2;&#x8003;&#x8D44;&#x6599;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文档修改记录"><span class="nav-number">5.3.</span> <span class="nav-text"><a href="#&#x6587;&#x6863;&#x4FEE;&#x6539;&#x8BB0;&#x5F55;" class="headerlink" title="&#x6587;&#x6863;&#x4FEE;&#x6539;&#x8BB0;&#x5F55;"></a>&#x6587;&#x6863;&#x4FEE;&#x6539;&#x8BB0;&#x5F55;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#版权所有"><span class="nav-number">5.4.</span> <span class="nav-text"><a href="#&#x7248;&#x6743;&#x6240;&#x6709;" class="headerlink" title="&#x7248;&#x6743;&#x6240;&#x6709;"></a>&#x7248;&#x6743;&#x6240;&#x6709;</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Dear少年</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
