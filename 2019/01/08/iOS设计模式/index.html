@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="1 创建型1.1 Factory Method（工厂方法）.md)定义一个用于创建对象的接口，让子类决定实例化哪一个类，工厂模式使一个类的实例化延迟到其子类。 NSObject 的 alloc 方法后跟的 init 其实就是一个工厂方法，我们可以通过任何 class 执行alloc方法后，再调用 init 方法即可生成任何 class 的实例对象。 1.2 Abstract Factory（抽象工">
+<meta name="description" content="1 创建型1.1 Factory Method（工厂方法）.md)定义一个用于创建对象的接口，让子类决定实例化哪一个类，工厂模式使一个类的实例化延迟到其子类。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="iOS设计模式">
 <meta property="og:url" content="http://yoursite.com/2019/01/08/iOS设计模式/index.html">
 <meta property="og:site_name" content="Dear少年">
-<meta property="og:description" content="1 创建型1.1 Factory Method（工厂方法）.md)定义一个用于创建对象的接口，让子类决定实例化哪一个类，工厂模式使一个类的实例化延迟到其子类。 NSObject 的 alloc 方法后跟的 init 其实就是一个工厂方法，我们可以通过任何 class 执行alloc方法后，再调用 init 方法即可生成任何 class 的实例对象。 1.2 Abstract Factory（抽象工">
+<meta property="og:description" content="1 创建型1.1 Factory Method（工厂方法）.md)定义一个用于创建对象的接口，让子类决定实例化哪一个类，工厂模式使一个类的实例化延迟到其子类。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-08T03:09:09.715Z">
+<meta property="og:updated_time" content="2019-01-08T03:10:12.929Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS设计模式">
-<meta name="twitter:description" content="1 创建型1.1 Factory Method（工厂方法）.md)定义一个用于创建对象的接口，让子类决定实例化哪一个类，工厂模式使一个类的实例化延迟到其子类。 NSObject 的 alloc 方法后跟的 init 其实就是一个工厂方法，我们可以通过任何 class 执行alloc方法后，再调用 init 方法即可生成任何 class 的实例对象。 1.2 Abstract Factory（抽象工">
+<meta name="twitter:description" content="1 创建型1.1 Factory Method（工厂方法）.md)定义一个用于创建对象的接口，让子类决定实例化哪一个类，工厂模式使一个类的实例化延迟到其子类。">
 
 
 
@@ -339,8 +339,7 @@
       
 
       
-        <h1 id="1-创建型"><a href="#1-创建型" class="headerlink" title="1 创建型"></a>1 创建型</h1><h2 id="1-1-Factory-Method（工厂方法）-md"><a href="#1-1-Factory-Method（工厂方法）-md" class="headerlink" title="1.1 Factory Method（工厂方法）.md)"></a>1.1 <a href="https://github.com/937447974/Blog/blob/master/架构设计/23设计模式之工厂方法(FactoryMethod" target="_blank" rel="noopener">Factory Method（工厂方法）</a>.md)</h2><p>定义一个用于创建对象的接口，让子类决定实例化哪一个类，工厂模式使一个类的实例化延迟到其子类。</p>
-<p>NSObject 的 alloc 方法后跟的 init 其实就是一个工厂方法，我们可以通过任何 class 执行alloc方法后，再调用 init 方法即可生成任何 class 的实例对象。</p>
+        <h1 id="1-创建型"><a href="#1-创建型" class="headerlink" title="1 创建型"></a>1 创建型</h1><h2 id="1-1-Factory-Method（工厂方法）-md"><a href="#1-1-Factory-Method（工厂方法）-md" class="headerlink" title="1.1 Factory Method（工厂方法）.md)"></a>1.1 <a href="https://github.com/937447974/Blog/blob/master/架构设计/23设计模式之工厂方法(FactoryMethod" target="_blank" rel="noopener">Factory Method（工厂方法）</a>.md)</h2><p>定义一个用于创建对象的接口，让子类决定实例化哪一个类，工厂模式使一个类的实例化延迟到其子类。<br><a id="more"></a><br>NSObject 的 alloc 方法后跟的 init 其实就是一个工厂方法，我们可以通过任何 class 执行alloc方法后，再调用 init 方法即可生成任何 class 的实例对象。</p>
 <h2 id="1-2-Abstract-Factory（抽象工厂）-md"><a href="#1-2-Abstract-Factory（抽象工厂）-md" class="headerlink" title="1.2 Abstract Factory（抽象工厂）.md)"></a>1.2 <a href="https://github.com/937447974/Blog/blob/master/架构设计/23设计模式之抽象工厂(Abstract%20Factory" target="_blank" rel="noopener">Abstract Factory（抽象工厂）</a>.md)</h2><p>提供一个创建一系列或相关依赖对象的接口，而无需指定它们具体的类。</p>
 <p>NSURLSession 创建 NSURLSessionDataTask、NSURLSessionUploadTask 和 NSURLSessionDownloadTask 等对象就是抽象工厂模式。通过一个仓库生产多个不同的实例。</p>
 <p>抽象工厂和工厂方法的本质区别就是抽象工厂是多个工厂多个接口生产多个产品。</p>
