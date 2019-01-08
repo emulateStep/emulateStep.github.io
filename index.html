@@ -269,6 +269,190 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/08/iOS设计模式/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Dear少年">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://img1.touxiang.cn/uploads/20131125/25-034343_597.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dear少年">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/01/08/iOS设计模式/" itemprop="url">iOS设计模式</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-08T11:08:56+08:00">
+                2019-01-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="1-创建型"><a href="#1-创建型" class="headerlink" title="1 创建型"></a>1 创建型</h1><h2 id="1-1-Factory-Method（工厂方法）-md"><a href="#1-1-Factory-Method（工厂方法）-md" class="headerlink" title="1.1 Factory Method（工厂方法）.md)"></a>1.1 <a href="https://github.com/937447974/Blog/blob/master/架构设计/23设计模式之工厂方法(FactoryMethod" target="_blank" rel="noopener">Factory Method（工厂方法）</a>.md)</h2><p>定义一个用于创建对象的接口，让子类决定实例化哪一个类，工厂模式使一个类的实例化延迟到其子类。</p>
+<p>NSObject 的 alloc 方法后跟的 init 其实就是一个工厂方法，我们可以通过任何 class 执行alloc方法后，再调用 init 方法即可生成任何 class 的实例对象。</p>
+<h2 id="1-2-Abstract-Factory（抽象工厂）-md"><a href="#1-2-Abstract-Factory（抽象工厂）-md" class="headerlink" title="1.2 Abstract Factory（抽象工厂）.md)"></a>1.2 <a href="https://github.com/937447974/Blog/blob/master/架构设计/23设计模式之抽象工厂(Abstract%20Factory" target="_blank" rel="noopener">Abstract Factory（抽象工厂）</a>.md)</h2><p>提供一个创建一系列或相关依赖对象的接口，而无需指定它们具体的类。</p>
+<p>NSURLSession 创建 NSURLSessionDataTask、NSURLSessionUploadTask 和 NSURLSessionDownloadTask 等对象就是抽象工厂模式。通过一个仓库生产多个不同的实例。</p>
+<p>抽象工厂和工厂方法的本质区别就是抽象工厂是多个工厂多个接口生产多个产品。</p>
+<h2 id="1-3-Builder（建造者）-md"><a href="#1-3-Builder（建造者）-md" class="headerlink" title="1.3 Builder（建造者）.md)"></a>1.3 <a href="https://github.com/937447974/Blog/blob/master/架构设计/23设计模式之建造者模式(Builder" target="_blank" rel="noopener">Builder（建造者）</a>.md)</h2><p>将一个复杂对象的构建与它的表示分离，使得同样的构建过程可以创建不同的表示。</p>
+<p>UIViewController 就是通过建造者模式创建的。我们添加 view 的时候，并不是在其 init 方法添加，而是在其构建方法 viewDidLoad 中添加 view。</p>
+<h2 id="1-4-Prototype（原型）-md"><a href="#1-4-Prototype（原型）-md" class="headerlink" title="1.4 Prototype（原型）.md)"></a>1.4 <a href="https://github.com/937447974/Blog/blob/master/架构设计/23设计模式之原型模式(Prototype" target="_blank" rel="noopener">Prototype（原型）</a>.md)</h2><p>用原型实例指定创建对象的种类，并且通过拷贝这些原型创建新的对象。</p>
+<p>NSObject 中的 <code>copy</code> 则是原型模式，通过拷贝自身达到创建对象。</p>
+<h2 id="1-5-Singleton（单例）-md"><a href="#1-5-Singleton（单例）-md" class="headerlink" title="1.5 Singleton（单例）.md)"></a>1.5 <a href="https://github.com/937447974/Blog/blob/master/架构设计/23设计模式之单例模式(Singleton" target="_blank" rel="noopener">Singleton（单例）</a>.md)</h2><p>保证一个类仅有一个实例，并提供一个访问它的全局访问点。</p>
+<p>[NSUserDefaults standardUserDefaults] 则是单例模式，整个app中唯一实例。</p>
+<h1 id="2-结构型"><a href="#2-结构型" class="headerlink" title="2 结构型"></a>2 结构型</h1><h2 id="2-1-Adapter-Class-Object（适配器）-md"><a href="#2-1-Adapter-Class-Object（适配器）-md" class="headerlink" title="2.1 Adapter Class/Object（适配器）.md)"></a>2.1 <a href="https://github.com/937447974/Blog/blob/master/架构设计/23设计模式之适配器(Adapter" target="_blank" rel="noopener">Adapter Class/Object（适配器）</a>.md)</h2><p>将一个类的接口转化成客户希望的另外一个接口。适配器模式使得原本由于接口不兼容而不能一起工作的那些类可以一起工作。</p>
+<p>适配器模式在 iOS 的 api 中并不常见，更多的是在底层使用，如 <code>forwardingTargetForSelector</code> 消息转发。</p>
+<h2 id="2-2-Facade（外观）-md"><a href="#2-2-Facade（外观）-md" class="headerlink" title="2.2 Facade（外观）.md)"></a>2.2 <a href="https://github.com/937447974/Blog/blob/master/架构设计/23设计模式之外观模式(Facade" target="_blank" rel="noopener">Facade（外观）</a>.md)</h2><p>为子系统中的一组接口提供一个一致的界面，外观模式定义了一个高层接口，这个接口使得这一子系统更加容易使用。</p>
+<p>KVC 其实就是外观模式，我们可以通过 <code>setValue: forKey:</code> 随意对对象的属性赋值，而无需考虑其是否有 setter 方法。</p>
+<h2 id="2-3-Bridge（桥接）-md"><a href="#2-3-Bridge（桥接）-md" class="headerlink" title="2.3 Bridge（桥接）.md)"></a>2.3 <a href="https://github.com/937447974/Blog/blob/master/架构设计/23设计模式之桥接模式(Bridge" target="_blank" rel="noopener">Bridge（桥接）</a>.md)</h2><p>将抽象部分与它的实现部分分离，使它们都可以独立地变化。</p>
+<p>UICollectionViewLayout 和其子类其实际就是一种桥接模式。通过它或者自定义子类实现，即可达到控制 CollectionView 界面的展示。</p>
+<h2 id="2-4-Composite（组合）-md"><a href="#2-4-Composite（组合）-md" class="headerlink" title="2.4 Composite（组合）.md)"></a>2.4 <a href="https://github.com/937447974/Blog/blob/master/架构设计/23设计模式之组合模式(Composite" target="_blank" rel="noopener">Composite（组合）</a>.md)</h2><p>将对象组合成树形结构以表示‘部分-整体’的层次结构，组合模式使得用户对单个对象和组合对象的使用具有一致性。</p>
+<p>UIView 结合 <code>addSubview:</code> 方法就是组合模式，当前 view 即可以是子 view 也可以是父 view。</p>
+<h2 id="2-5-Decorator（装饰）-md"><a href="#2-5-Decorator（装饰）-md" class="headerlink" title="2.5 Decorator（装饰）.md)"></a>2.5 <a href="https://github.com/937447974/Blog/blob/master/架构设计/23设计模式之装饰模式(Decorator" target="_blank" rel="noopener">Decorator（装饰）</a>.md)</h2><p>动态地给一个对象添加一些额外的职责。就增加功能来说，装饰模式相比子类更加灵活。</p>
+<p>category 其实就是一直装饰模式，我们可以随意为一个类添加方法。</p>
+<h2 id="2-6-Flyweight（享元）-md"><a href="#2-6-Flyweight（享元）-md" class="headerlink" title="2.6 Flyweight（享元）.md)"></a>2.6 <a href="https://github.com/937447974/Blog/blob/master/架构设计/23设计模式之享元模式(Flyweight" target="_blank" rel="noopener">Flyweight（享元）</a>.md)</h2><p>运用共享技术有效地支持大量细粒度的对象。</p>
+<p>[NSUserDefaults standardUserDefaults] 内存储数据的方式是一个享元模式，通过它内部的 NSMutableDictionary 我们可以存储任何我们想存储的基本类型数据。</p>
+<h2 id="2-7-Proxy（代理）-md"><a href="#2-7-Proxy（代理）-md" class="headerlink" title="2.7 Proxy（代理）.md)"></a>2.7 <a href="https://github.com/937447974/Blog/blob/master/架构设计/23设计模式之代理模式(Proxy" target="_blank" rel="noopener">Proxy（代理）</a>.md)</h2><p>为其他对象提供一种代理以控制对这个对象的访问。</p>
+<p>UITableViewDataSource 则是代理模式，通过它的代理回调我们控制了 UITableView 的相关行为。</p>
+<h1 id="3-行为型"><a href="#3-行为型" class="headerlink" title="3 行为型"></a>3 行为型</h1><h2 id="3-1-一梯队"><a href="#3-1-一梯队" class="headerlink" title="3.1 一梯队"></a>3.1 一梯队</h2><h3 id="3-1-1-Observer（观察者）-md"><a href="#3-1-1-Observer（观察者）-md" class="headerlink" title="3.1.1 Observer（观察者）.md)"></a>3.1.1 <a href="https://github.com/937447974/Blog/blob/master/架构设计/23设计模式之观察者模式(Observer" target="_blank" rel="noopener">Observer（观察者）</a>.md)</h3><p>定义对象间的一种一对多的依赖关系，当一个对象的状态发生改变时，所有依赖于它的对象都得到通知并被自动更新。</p>
+<p>KVO 则是一种观察模式，我们可以动态监听对象属性值的变化。</p>
+<h3 id="3-1-2-Template-Method（模板方法）-md"><a href="#3-1-2-Template-Method（模板方法）-md" class="headerlink" title="3.1.2 Template Method（模板方法）.md)"></a>3.1.2 <a href="https://github.com/937447974/Blog/blob/master/架构设计/23设计模式之模板方法(TemplateMethod" target="_blank" rel="noopener">Template Method（模板方法）</a>.md)</h3><p>定义一个操作的算法骨架，而将一些步骤延迟到子类中，模板方法使得子类可以不改变一个算法的结构即可重定义该算法的某些特定步骤。</p>
+<p>init 则是模板方法。NSObject 定义了 init 方法，我们可子类重写这个方法初始化自己的相关操作。</p>
+<h3 id="3-1-3-Chain-of-Responsibility（责任链）-md"><a href="#3-1-3-Chain-of-Responsibility（责任链）-md" class="headerlink" title="3.1.3 Chain of Responsibility（责任链）.md)"></a>3.1.3 <a href="https://github.com/937447974/Blog/blob/master/架构设计/23设计模式之责任链模式(COR" target="_blank" rel="noopener">Chain of Responsibility（责任链）</a>.md)</h3><p>使多个对象都有机会处理请求，从而避免请求的发送者和接收者之间的耦合关系。将这些对象连成一条链，并沿着这条链传递该请求，直到有一个对象处理它为止。</p>
+<p>调用方法，其对象 isa 的流向则是责任链模式，简单点说就是当前类能处理则处理，不能处理就交给其父类处理。</p>
+<h3 id="3-1-4-Command（命令）-md"><a href="#3-1-4-Command（命令）-md" class="headerlink" title="3.1.4 Command（命令）.md)"></a>3.1.4 <a href="https://github.com/937447974/Blog/blob/master/架构设计/23设计模式之命令模式(Command" target="_blank" rel="noopener">Command（命令）</a>.md)</h3><p>将一个请求封装为一个对象，从而使你可用不同的请求对客户进行参数化；可以对请求排队或记录请求日志，以及支持可撤销的操作。</p>
+<p>NSURLSessionDataTask 的网络控制则是命令模式，我们可以通过控制它发起或取消网络请求。</p>
+<h3 id="3-1-5-State（状态）-md"><a href="#3-1-5-State（状态）-md" class="headerlink" title="3.1.5 State（状态）.md)"></a>3.1.5 <a href="https://github.com/937447974/Blog/blob/master/架构设计/23设计模式之状态模式(State" target="_blank" rel="noopener">State（状态）</a>.md)</h3><p>允许一个对象在其内部状态改变时改变它的行为，让对象看起来似乎修改了它的类。</p>
+<p>状态模式我们可以理解为改变一系列的bool值。如通过改成 UIScrollView 的 scrollEnabled 即可控制用户能否滚动 ScrollView。</p>
+<h2 id="3-2-二梯队"><a href="#3-2-二梯队" class="headerlink" title="3.2 二梯队"></a>3.2 二梯队</h2><h3 id="3-2-1-Strategy（策略）-md"><a href="#3-2-1-Strategy（策略）-md" class="headerlink" title="3.2.1 Strategy（策略）.md)"></a>3.2.1 <a href="https://github.com/937447974/Blog/blob/master/架构设计/23设计模式之策略模式(Strategy" target="_blank" rel="noopener">Strategy（策略）</a>.md)</h3><p>定义一系列的算法，把它们一个个封装起来，并且使它们可相互替换。本模式使得算法可独立于使用它的客户而变化。</p>
+<p>NSMutableArray 的 sort 排序算法就是策略模式，我们可在外部随意设置算法的具体实现。</p>
+<h3 id="3-2-2-Interpreter（解释器）-md"><a href="#3-2-2-Interpreter（解释器）-md" class="headerlink" title="3.2.2 Interpreter（解释器）.md)"></a>3.2.2 <a href="https://github.com/937447974/Blog/blob/master/架构设计/23设计模式之解释器模式(Interpreter" target="_blank" rel="noopener">Interpreter（解释器）</a>.md)</h3><p>给定一个语言，定义它的文法的一种表示，并定义一个解释器，这个解释器使用该表示来解释语言中的句子。</p>
+<p>NSString 的 boolValue 则是内嵌的解释器模式，将字符串解释成 bool 值。</p>
+<h3 id="3-2-3-Iterator（迭代器）-md"><a href="#3-2-3-Iterator（迭代器）-md" class="headerlink" title="3.2.3 Iterator（迭代器）.md)"></a>3.2.3 <a href="https://github.com/937447974/Blog/blob/master/架构设计/23设计模式之迭代器模式(Iterator" target="_blank" rel="noopener">Iterator（迭代器）</a>.md)</h3><p>提供一种方法顺序访问一个聚合对象中的各个元素，而又不需要暴露该对象的内部表示。</p>
+<p>forin 遍历数组则是迭代器模式。</p>
+<h3 id="3-2-4-Mediator（中介者）-md"><a href="#3-2-4-Mediator（中介者）-md" class="headerlink" title="3.2.4 Mediator（中介者）.md)"></a>3.2.4 <a href="https://github.com/937447974/Blog/blob/master/架构设计/23设计模式之中介者模式(Mediator" target="_blank" rel="noopener">Mediator（中介者）</a>.md)</h3><p>用一个中介对象来封装一系列的对象交互。中介者使各对象不需要显式地相互引用，从而使其耦合松散，而且可以独立地改变它们之间的交互。</p>
+<p>UIApplication 的 <code>openURL:</code>，则是中介者模式，提供它我们无需与其他 app 耦合，即可打开其他app。如 qq 的授权登录。</p>
+<h3 id="3-2-5-Memento（备忘录）-md"><a href="#3-2-5-Memento（备忘录）-md" class="headerlink" title="3.2.5 Memento（备忘录）.md)"></a>3.2.5 <a href="https://github.com/937447974/Blog/blob/master/架构设计/23设计模式之备忘录模式(Memento" target="_blank" rel="noopener">Memento（备忘录）</a>.md)</h3><p>在不破坏封装性的前提下，捕获一个对象的内部状态，并在该对象之外保存这个状态。这样以后就可将该对象恢复到原先保存的状态。</p>
+<p>CoreData 的缓存就是备忘录模式，当我们修改了内存中对象的数据时，如果不保存到硬盘上。我们可以通过重置使硬盘中的数据覆盖内存中对象的数据。</p>
+<h3 id="3-2-6-Visitor（访问者）-md"><a href="#3-2-6-Visitor（访问者）-md" class="headerlink" title="3.2.6 Visitor（访问者）.md)"></a>3.2.6 <a href="https://github.com/937447974/Blog/blob/master/架构设计/23设计模式之访问者模式(Visitor" target="_blank" rel="noopener">Visitor（访问者）</a>.md)</h3><p>一个作用于某对象结构中的各元素的操作。它使你可以在不改变各元素的类的前提下定义作用于这些元素的新操作。</p>
+<p>NSNumber 其实际就是访问者模式，我们并不知道内部是是否为 float 或 int 数据。它提供了一系列的接口，只有我们在使用的时候才知道能否转换为 float 或 int 数据。</p>
+<p>&#160;</p>
+<hr>
+<h1 id="Appendix"><a href="#Appendix" class="headerlink" title="Appendix"></a>Appendix</h1><h2 id="Revision-History"><a href="#Revision-History" class="headerlink" title="Revision History"></a>Revision History</h2><table>
+<thead>
+<tr>
+<th>时间</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2017-04-03</td>
+<td>博文完成</td>
+</tr>
+</tbody>
+</table>
+<h2 id="Copyright"><a href="#Copyright" class="headerlink" title="Copyright"></a>Copyright</h2><p>CSDN：<a href="http://blog.csdn.net/y550918116j" target="_blank" rel="noopener">http://blog.csdn.net/y550918116j</a></p>
+<p>GitHub：<a href="https://github.com/937447974" target="_blank" rel="noopener">https://github.com/937447974</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/04/JustDiaryBlock/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -884,132 +1068,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/02/XcodeBlog/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Dear少年">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://img1.touxiang.cn/uploads/20131125/25-034343_597.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dear少年">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/11/02/XcodeBlog/" itemprop="url">AFNetworking3.0判断网络状态</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-02T16:52:00+08:00">
-                2018-11-02
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>1.下载AFNetworking3.0,下载导入或者使用cocoapod下载,这里不再赘述.</p>
-<p>2.开始撸代码</p>
-<p>导入头文件,这里使用cocoapod导入的AFNetworking3.0<br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/11/02/XcodeBlog/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1064,7 +1122,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-count">17</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
