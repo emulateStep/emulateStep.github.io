@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="Dear少年">
 <meta property="og:description" content="CoreText第一讲CoreText常用到的类和方法">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-03T08:45:23.024Z">
+<meta property="og:updated_time" content="2019-04-03T09:03:38.837Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CoreText常用类和方法">
 <meta name="twitter:description" content="CoreText第一讲CoreText常用到的类和方法">
@@ -339,9 +339,8 @@
       
 
       
-        <p>CoreText第一讲<br>CoreText常用到的类和方法<br><a id="more"></a></p>
-<p>常用类</p>
-<ol>
+        <h2 id="CoreText第一讲"><a href="#CoreText第一讲" class="headerlink" title="CoreText第一讲"></a>CoreText第一讲</h2><h3 id="CoreText常用到的类和方法"><a href="#CoreText常用到的类和方法" class="headerlink" title="CoreText常用到的类和方法"></a>CoreText常用到的类和方法</h3><a id="more"></a>
+<h3 id="常用类"><a href="#常用类" class="headerlink" title="常用类"></a>常用类</h3><ul>
 <li>CTFontRef</li>
 <li>CTRunDelegateCallbacks</li>
 <li>CTRunDelegateRef</li>
@@ -354,60 +353,104 @@
 <li>CFArrayRef</li>
 <li>CFIndex</li>
 <li>CFRange</li>
-</ol>
-<p>常用方法（按照项目中方法使用顺序排序）</p>
-<ol>
-<li><p>创建CTRunDelegateRef, 需要__bridge_retained桥转，防止被系统回收<br>CTRunDelegateRef _Nullable CTRunDelegateCreate(<br>const CTRunDelegateCallbacks<em> callbacks,<br>void </em> _Nullable refCon ) CT_AVAILABLE(macos(10.5), ios(3.2), watchos(2.0), tvos(9.0));</p>
+</ul>
+<h3 id="常用方法（按照项目中方法使用顺序排序）"><a href="#常用方法（按照项目中方法使用顺序排序）" class="headerlink" title="常用方法（按照项目中方法使用顺序排序）"></a>常用方法（按照项目中方法使用顺序排序）</h3><ol>
+<li><p><strong>创建CTRunDelegateRef, 需要__bridge_retained桥转，防止被系统回收</strong><br><code>CTRunDelegateRef _Nullable CTRunDelegateCreate(
+const CTRunDelegateCallbacks* callbacks,
+void * _Nullable refCon ) CT_AVAILABLE(macos(10.5), ios(3.2), watchos(2.0), tvos(9.0));</code></p>
 </li>
-<li><p>设置RunDelegate代理<br>range : CFRangeMake(0, 1),CTRun为图片，起始0，长度1<br>attrName ：kCTRunDelegateAttributeName<br>CF_EXPORT void CFAttributedStringSetAttribute(CFMutableAttributedStringRef aStr, CFRange range, CFStringRef attrName, CFTypeRef value);</p>
+<li><p><strong>设置RunDelegate代理</strong><br><em>range : CFRangeMake(0, 1),CTRun为图片，起始0，长度1</em><br><em>attrName ：kCTRunDelegateAttributeName</em><br><code>CF_EXPORT void CFAttributedStringSetAttribute(CFMutableAttributedStringRef aStr, CFRange range, CFStringRef attrName, CFTypeRef value);</code></p>
 </li>
-<li><p>创建CTFontRef字体<br>CTFontRef CTFontCreateWithName(<br>CFStringRef                 name,<br>CGFloat                     size,<br>const CGAffineTransform * _Nullable matrix ) CT_AVAILABLE(macos(10.5), ios(3.2), watchos(2.0), tvos(9.0));</p>
+<li><p><strong>创建CTFontRef字体</strong><br><code>CTFontRef CTFontCreateWithName(
+CFStringRef                 name,
+CGFloat                     size,
+const CGAffineTransform * _Nullable matrix ) CT_AVAILABLE(macos(10.5), ios(3.2), watchos(2.0), tvos(9.0));</code></p>
 </li>
-<li><p>创建CTFramesetterRef<br>CTFramesetterRef CTFramesetterCreateWithAttributedString(<br>CFAttributedStringRef string ) CT_AVAILABLE(macos(10.5), ios(3.2), watchos(2.0), tvos(9.0));</p>
+<li><p><strong>创建CTFramesetterRef</strong><br><code>CTFramesetterRef CTFramesetterCreateWithAttributedString(
+CFAttributedStringRef string ) CT_AVAILABLE(macos(10.5), ios(3.2), watchos(2.0), tvos(9.0));</code></p>
 </li>
-<li><p>创建CTPathRef<br>CG_EXTERN CGPathRef  CGPathCreateWithRect(CGRect rect,<br>const CGAffineTransform * __nullable transform)<br>CG_AVAILABLE_STARTING(10.5, 4.0);</p>
+<li><p><strong>创建CTPathRef</strong><br><code>CG_EXTERN CGPathRef  CGPathCreateWithRect(CGRect rect,
+const CGAffineTransform * __nullable transform)
+CG_AVAILABLE_STARTING(10.5, 4.0);</code></p>
 </li>
-<li><p>创建CTFrameRef<br>framesetter : CTFramesetterRef<br>stringRange : 设置多大就显示多少字符。设置length为0时，一直渲染，直到渲染的字符串结束或者超出path设置的范围<br>frameAttributes ：额外控制frame的属性字典，没有时填入NULL<br>CTFrameRef CTFramesetterCreateFrame(<br>CTFramesetterRef framesetter,<br>CFRange stringRange,<br>CGPathRef path,<br>CFDictionaryRef _Nullable frameAttributes ) CT_AVAILABLE(macos(10.5), ios(3.2), watchos(2.0), tvos(9.0));</p>
+<li><p><strong>创建CTFrameRef</strong><br><em>framesetter : CTFramesetterRef</em><br><em>stringRange : 设置多大就显示多少字符。设置length为0时，一直渲染，直到渲染的字符串结束或者超出path设置的范围</em><br><em>frameAttributes ：额外控制frame的属性字典，没有时填入NULL</em><br><code>CTFrameRef CTFramesetterCreateFrame(
+CTFramesetterRef framesetter,
+CFRange stringRange,
+CGPathRef path,
+CFDictionaryRef _Nullable frameAttributes ) CT_AVAILABLE(macos(10.5), ios(3.2), watchos(2.0), tvos(9.0));</code></p>
 </li>
-<li><p>frame的范围转换成此frame在全部字符串中的Range<br>CFRange CTFrameGetVisibleStringRange(<br>CTFrameRef frame ) CT_AVAILABLE(macos(10.5), ios(3.2), watchos(2.0), tvos(9.0));</p>
+<li><p><strong>frame的范围转换成此frame在全部字符串中的Range</strong><br><code>CFRange CTFrameGetVisibleStringRange(
+CTFrameRef frame ) CT_AVAILABLE(macos(10.5), ios(3.2), watchos(2.0), tvos(9.0));</code></p>
 </li>
-<li><p>获取组成frame的所有CTLine数组<br>CFArrayRef CTFrameGetLines(<br>CTFrameRef frame ) CT_AVAILABLE(macos(10.5), ios(3.2), watchos(2.0), tvos(9.0));</p>
+<li><p><strong>获取组成frame的所有CTLine数组</strong><br><code>CFArrayRef CTFrameGetLines(
+CTFrameRef frame ) CT_AVAILABLE(macos(10.5), ios(3.2), watchos(2.0), tvos(9.0));</code></p>
 </li>
-<li><p>获取每一行的起始点，保存在origins数组中<br>frame : 存储有所有行信息，传入的frame的所有行坐标点会被复制一份<br>range : 想要获取的行坐标的范围，如果range的length是0，复制操作会重新从range的start位置继续，直到复制完成<br>origins : 一个CGPoint类型的数组指针，用来接收从frame中复制出来的行坐标<br>void CTFrameGetLineOrigins(<br>CTFrameRef frame,<br>CFRange range,<br>CGPoint origins[_Nonnull] ) CT_AVAILABLE(macos(10.5), ios(3.2), watchos(2.0), tvos(9.0));</p>
+<li><p><strong>获取每一行的起始点，保存在origins数组中</strong><br><em>frame : 存储有所有行信息，传入的frame的所有行坐标点会被复制一份</em><br><em>range : 想要获取的行坐标的范围，如果range的length是0，复制操作会重新从range的start位置继续，直到复制完成</em><br><code>origins : 一个CGPoint类型的数组指针，用来接收从frame中复制出来的行坐标
+void CTFrameGetLineOrigins(
+CTFrameRef frame,
+CFRange range,
+CGPoint origins[_Nonnull] ) CT_AVAILABLE(macos(10.5), ios(3.2), watchos(2.0), tvos(9.0));</code></p>
 </li>
-<li><p>获取CTLine包含的所有的CTRun<br>CFArrayRef CTLineGetGlyphRuns(<br>CTLineRef line ) CT_AVAILABLE(macos(10.5), ios(3.2), watchos(2.0), tvos(9.0));</p>
+<li><p><strong>获取CTLine包含的所有的CTRun</strong><br><code>CFArrayRef CTLineGetGlyphRuns(
+CTLineRef line ) CT_AVAILABLE(macos(10.5), ios(3.2), watchos(2.0), tvos(9.0));</code></p>
 </li>
-<li><p>获取CTRun保存的属性。获取到的内容是通过CFAttributedStringSetAttribute方法设置给图片属性字符串的NSDictionary，key为kCTRunDelegateAttributeName，值为CTRunDelegateRef<br>CFDictionaryRef CTRunGetAttributes(<br>CTRunRef run ) CT_AVAILABLE(macos(10.5), ios(3.2), watchos(2.0), tvos(9.0));</p>
+<li><p><strong>获取CTRun保存的属性。获取到的内容是通过CFAttributedStringSetAttribute方法设置给图片属性字符串的NSDictionary，key为kCTRunDelegateAttributeName，值为CTRunDelegateRef</strong><br><code>CFDictionaryRef CTRunGetAttributes(
+CTRunRef run ) CT_AVAILABLE(macos(10.5), ios(3.2), watchos(2.0), tvos(9.0));</code></p>
 </li>
-<li><p>从delegate中获取使用CTRunDelegateCreate初始时候设置的元数据<br>void * CTRunDelegateGetRefCon(<br>CTRunDelegateRef runDelegate ) CT_AVAILABLE(macos(10.5), ios(3.2), watchos(2.0), tvos(9.0));</p>
+<li><p><strong>从delegate中获取使用CTRunDelegateCreate初始时候设置的元数据</strong><br><code>void * CTRunDelegateGetRefCon(
+CTRunDelegateRef runDelegate ) CT_AVAILABLE(macos(10.5), ios(3.2), watchos(2.0), tvos(9.0));</code></p>
 </li>
-<li><p>获取CTRun的绘制属性ascent、desent，返回值是CTRun的宽度<br>double CTRunGetTypographicBounds(<br>CTRunRef run,<br>CFRange range,<br>CGFloat <em> _Nullable ascent,<br>CGFloat </em> _Nullable descent,<br>CGFloat * _Nullable leading ) CT_AVAILABLE(macos(10.5), ios(3.2), watchos(2.0), tvos(9.0));</p>
+<li><p><strong>获取CTRun的绘制属性ascent、desent，返回值是CTRun的宽度</strong><br><code>double CTRunGetTypographicBounds(
+CTRunRef run,
+CFRange range,
+CGFloat * _Nullable ascent,
+CGFloat * _Nullable descent,
+CGFloat * _Nullable leading ) CT_AVAILABLE(macos(10.5), ios(3.2), watchos(2.0), tvos(9.0));</code></p>
 </li>
-<li><p>获取CTRun在整段文字中的Range<br>CFRange CTRunGetStringRange(<br>CTRunRef run ) CT_AVAILABLE(macos(10.5), ios(3.2), watchos(2.0), tvos(9.0));</p>
+<li><p><strong>获取CTRun在整段文字中的Range</strong><br><code>CFRange CTRunGetStringRange(
+CTRunRef run ) CT_AVAILABLE(macos(10.5), ios(3.2), watchos(2.0), tvos(9.0));</code></p>
 </li>
-<li><p>获取整段文字中charIndex位置的字符相对所在line的原点的x值<br>CGFloat CTLineGetOffsetForStringIndex(<br>CTLineRef line,<br>CFIndex charIndex,<br>CGFloat * _Nullable secondaryOffset ) CT_AVAILABLE(macos(10.5), ios(3.2), watchos(2.0), tvos(9.0));</p>
+<li><p><strong>获取整段文字中charIndex位置的字符相对所在line的原点的x值</strong><br><code>CGFloat CTLineGetOffsetForStringIndex(
+CTLineRef line,
+CFIndex charIndex,
+CGFloat * _Nullable secondaryOffset ) CT_AVAILABLE(macos(10.5), ios(3.2), watchos(2.0), tvos(9.0));</code></p>
 </li>
-<li><p>获得CTFrame的绘制区域<br>CGPathRef CTFrameGetPath(<br>CTFrameRef frame ) CT_AVAILABLE(macos(10.5), ios(3.2), watchos(2.0), tvos(9.0));</p>
+<li><p><strong>获得CTFrame的绘制区域</strong><br><code>CGPathRef CTFrameGetPath(
+CTFrameRef frame ) CT_AVAILABLE(macos(10.5), ios(3.2), watchos(2.0), tvos(9.0));</code></p>
 </li>
-<li><p>获取边界框<br>CG_EXTERN CGRect CGPathGetBoundingBox(CGPathRef cg_nullable path)<br>CG_AVAILABLE_STARTING(10.2, 2.0);</p>
+<li><p><strong>获取边界框</strong><br><code>CG_EXTERN CGRect CGPathGetBoundingBox(CGPathRef cg_nullable path)
+CG_AVAILABLE_STARTING(10.2, 2.0);</code></p>
 </li>
-<li><p>rect 按照（dx，dy）进行平移<br>CG_EXTERN CGRect CGRectOffset(CGRect rect, CGFloat dx, CGFloat dy)<br>CG_AVAILABLE_STARTING(10.0, 2.0);</p>
+<li><p><strong>rect 按照（dx，dy）进行平移</strong><br><code>CG_EXTERN CGRect CGRectOffset(CGRect rect, CGFloat dx, CGFloat dy)
+CG_AVAILABLE_STARTING(10.0, 2.0);</code></p>
 </li>
-<li><p>获取数组中的元素个数<br>CF_EXPORT<br>CFIndex CFArrayGetCount(CFArrayRef theArray);</p>
+<li><p><strong>获取数组中的元素个数</strong><br><code>CF_EXPORT
+CFIndex CFArrayGetCount(CFArrayRef theArray);</code></p>
 </li>
-<li><p>这是一个实现相对位移的函数，每次位移都是相对于UIKit坐标下的（0，0）点<br>CG_EXTERN CGAffineTransform CGAffineTransformMakeTranslation(CGFloat tx,<br>CGFloat ty) CG_AVAILABLE_STARTING(10.0, 2.0);</p>
+<li><p><strong>这是一个实现相对位移的函数，每次位移都是相对于UIKit坐标下的（0，0）点</strong><br><code>CG_EXTERN CGAffineTransform CGAffineTransformMakeTranslation(CGFloat tx,
+CGFloat ty) CG_AVAILABLE_STARTING(10.0, 2.0);</code></p>
 </li>
-<li><p>一个用于处理形变的类,其可以改变控件的平移、缩放、旋转等,其坐标系统采用的是二维坐标系,即向右为x轴正方向,向下为y轴正方向<br>t ： CGAffineTransform<br>sx ： 当sx为正值时，会在x轴方向上缩放x倍，反之，则在缩放的基础上沿着竖直线翻转<br>sy ： 当sy为正值时，会在y轴方向上缩放y倍，反之，则在缩放的基础上沿着水平线翻转<br>CG_EXTERN CGAffineTransform CGAffineTransformScale(CGAffineTransform t,<br>CGFloat sx, CGFloat sy) CG_AVAILABLE_STARTING(10.0, 2.0);</p>
+<li><p><strong>一个用于处理形变的类,其可以改变控件的平移、缩放、旋转等,其坐标系统采用的是二维坐标系,即向右为x轴正方向,向下为y轴正方向</strong><br><em>t ： CGAffineTransform</em><br><em>sx ： 当sx为正值时，会在x轴方向上缩放x倍，反之，则在缩放的基础上沿着竖直线翻转</em><br><em>sy ： 当sy为正值时，会在y轴方向上缩放y倍，反之，则在缩放的基础上沿着水平线翻转</em><br><code>CG_EXTERN CGAffineTransform CGAffineTransformScale(CGAffineTransform t,
+CGFloat sx, CGFloat sy) CG_AVAILABLE_STARTING(10.0, 2.0);</code></p>
 </li>
-<li><p>获取CTLine数组中第idx个line元素，<br>CF_EXPORT<br>const void *CFArrayGetValueAtIndex(CFArrayRef theArray, CFIndex idx);</p>
+<li><p><strong>获取CTLine数组中第idx个line元素，</strong><br><code>CF_EXPORT
+const void *CFArrayGetValueAtIndex(CFArrayRef theArray, CFIndex idx);</code></p>
 </li>
-<li><p>获取CTLine的上行高度，下行高度，返回值是CTLine的行距<br>double CTLineGetTypographicBounds(<br>CTLineRef line,<br>CGFloat <em> _Nullable ascent,<br>CGFloat </em> _Nullable descent,<br>CGFloat * _Nullable leading ) CT_AVAILABLE(macos(10.5), ios(3.2), watchos(2.0), tvos(9.0));</p>
+<li><p><strong>获取CTLine的上行高度，下行高度，返回值是CTLine的行距</strong><br><code>double CTLineGetTypographicBounds(
+CTLineRef line,
+CGFloat * _Nullable ascent,
+CGFloat * _Nullable descent,
+CGFloat * _Nullable leading ) CT_AVAILABLE(macos(10.5), ios(3.2), watchos(2.0), tvos(9.0));</code></p>
 </li>
-<li><p>坐标系转换<br>CG_EXTERN CGRect CGRectApplyAffineTransform(CGRect rect, CGAffineTransform t)<br>CG_AVAILABLE_STARTING(10.4, 2.0);</p>
+<li><p><strong>坐标系转换</strong><br><code>CG_EXTERN CGRect CGRectApplyAffineTransform(CGRect rect, CGAffineTransform t)
+CG_AVAILABLE_STARTING(10.4, 2.0);</code></p>
 </li>
-<li><p>获取点击处position文字在整段文字中的index<br>CFIndex CTLineGetStringIndexForPosition(<br>CTLineRef line,<br>CGPoint position ) CT_AVAILABLE(macos(10.5), ios(3.2), watchos(2.0), tvos(9.0));</p>
+<li><p><strong>获取点击处position文字在整段文字中的index</strong><br><code>CFIndex CTLineGetStringIndexForPosition(
+CTLineRef line,
+CGPoint position ) CT_AVAILABLE(macos(10.5), ios(3.2), watchos(2.0), tvos(9.0));</code></p>
 </li>
-<li><p>获取CTLine中文字在整段文字中的Range<br>CFRange CTLineGetStringRange(<br>CTLineRef line ) CT_AVAILABLE(macos(10.5), ios(3.2), watchos(2.0), tvos(9.0));</p>
+<li><p><strong>获取CTLine中文字在整段文字中的Range</strong><br><code>CFRange CTLineGetStringRange(
+CTLineRef line ) CT_AVAILABLE(macos(10.5), ios(3.2), watchos(2.0), tvos(9.0));</code></p>
 </li>
 </ol>
 
@@ -494,8 +537,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -552,6 +604,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#CoreText第一讲"><span class="nav-number">1.</span> <span class="nav-text"><a href="#CoreText&#x7B2C;&#x4E00;&#x8BB2;" class="headerlink" title="CoreText&#x7B2C;&#x4E00;&#x8BB2;"></a>CoreText&#x7B2C;&#x4E00;&#x8BB2;</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CoreText常用到的类和方法"><span class="nav-number">1.1.</span> <span class="nav-text"><a href="#CoreText&#x5E38;&#x7528;&#x5230;&#x7684;&#x7C7B;&#x548C;&#x65B9;&#x6CD5;" class="headerlink" title="CoreText&#x5E38;&#x7528;&#x5230;&#x7684;&#x7C7B;&#x548C;&#x65B9;&#x6CD5;"></a>CoreText&#x5E38;&#x7528;&#x5230;&#x7684;&#x7C7B;&#x548C;&#x65B9;&#x6CD5;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常用类"><span class="nav-number">1.2.</span> <span class="nav-text"><a href="#&#x5E38;&#x7528;&#x7C7B;" class="headerlink" title="&#x5E38;&#x7528;&#x7C7B;"></a>&#x5E38;&#x7528;&#x7C7B;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常用方法（按照项目中方法使用顺序排序）"><span class="nav-number">1.3.</span> <span class="nav-text"><a href="#&#x5E38;&#x7528;&#x65B9;&#x6CD5;&#xFF08;&#x6309;&#x7167;&#x9879;&#x76EE;&#x4E2D;&#x65B9;&#x6CD5;&#x4F7F;&#x7528;&#x987A;&#x5E8F;&#x6392;&#x5E8F;&#xFF09;" class="headerlink" title="&#x5E38;&#x7528;&#x65B9;&#x6CD5;&#xFF08;&#x6309;&#x7167;&#x9879;&#x76EE;&#x4E2D;&#x65B9;&#x6CD5;&#x4F7F;&#x7528;&#x987A;&#x5E8F;&#x6392;&#x5E8F;&#xFF09;"></a>&#x5E38;&#x7528;&#x65B9;&#x6CD5;&#xFF08;&#x6309;&#x7167;&#x9879;&#x76EE;&#x4E2D;&#x65B9;&#x6CD5;&#x4F7F;&#x7528;&#x987A;&#x5E8F;&#x6392;&#x5E8F;&#xFF09;</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
