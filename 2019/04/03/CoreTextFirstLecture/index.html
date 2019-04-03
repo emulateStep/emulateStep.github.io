@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="IT生活," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -79,18 +79,17 @@
 
 
 
-<meta name="description" content="&amp;emsp;&amp;emsp;“十万行代码，十万年薪”，这句很早就流行在程序员之间的名言还是有道理的。年底了，项目也接近尾声，经理要统计项目的总代码量，当时比较忙，也没有当回事，随口说了句就一百万行吧（带上各种第三方），现在想想，代码量可能没有这么多，闲来找到一个用终端统计代码量的方法。">
-<meta name="keywords" content="IT生活">
+<meta name="description" content="CoreText第一讲CoreText常用到的类和方法">
 <meta property="og:type" content="article">
-<meta property="og:title" content="iOS项目统计总代码行数统计">
-<meta property="og:url" content="http://yoursite.com/2017/12/29/SecondBlog/index.html">
+<meta property="og:title" content="CoreText常用类和方法">
+<meta property="og:url" content="http://yoursite.com/2019/04/03/CoreTextFirstLecture/index.html">
 <meta property="og:site_name" content="Dear少年">
-<meta property="og:description" content="&amp;emsp;&amp;emsp;“十万行代码，十万年薪”，这句很早就流行在程序员之间的名言还是有道理的。年底了，项目也接近尾声，经理要统计项目的总代码量，当时比较忙，也没有当回事，随口说了句就一百万行吧（带上各种第三方），现在想想，代码量可能没有这么多，闲来找到一个用终端统计代码量的方法。">
+<meta property="og:description" content="CoreText第一讲CoreText常用到的类和方法">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-29T06:58:53.081Z">
+<meta property="og:updated_time" content="2019-04-03T08:45:23.024Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="iOS项目统计总代码行数统计">
-<meta name="twitter:description" content="&amp;emsp;&amp;emsp;“十万行代码，十万年薪”，这句很早就流行在程序员之间的名言还是有道理的。年底了，项目也接近尾声，经理要统计项目的总代码量，当时比较忙，也没有当回事，随口说了句就一百万行吧（带上各种第三方），现在想想，代码量可能没有这么多，闲来找到一个用终端统计代码量的方法。">
+<meta name="twitter:title" content="CoreText常用类和方法">
+<meta name="twitter:description" content="CoreText第一讲CoreText常用到的类和方法">
 
 
 
@@ -120,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/12/29/SecondBlog/"/>
+  <link rel="canonical" href="http://yoursite.com/2019/04/03/CoreTextFirstLecture/"/>
 
 
 
 
 
-  <title>iOS项目统计总代码行数统计 | Dear少年</title>
+  <title>CoreText常用类和方法 | Dear少年</title>
   
 
 
@@ -273,7 +272,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/29/SecondBlog/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/03/CoreTextFirstLecture/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Dear少年">
@@ -290,7 +289,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">iOS项目统计总代码行数统计</h1>
+          <h1 class="post-title" itemprop="name headline">CoreText常用类和方法</h1>
         
 
         <div class="post-meta">
@@ -302,8 +301,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-29T14:38:06+08:00">
-                2017-12-29
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-03T16:43:46+08:00">
+                2019-04-03
               </time>
             
 
@@ -340,12 +339,77 @@
       
 
       
-        <p>&emsp;&emsp;“十万行代码，十万年薪”，这句很早就流行在程序员之间的名言还是有道理的。年底了，项目也接近尾声，经理要统计项目的总代码量，当时比较忙，也没有当回事，随口说了句就一百万行吧（带上各种第三方），现在想想，代码量可能没有这么多，闲来找到一个用终端统计代码量的方法。<br><a id="more"></a><br>废话不多说，直接上干货：</p>
+        <p>CoreText第一讲<br>CoreText常用到的类和方法<br><a id="more"></a></p>
+<p>常用类</p>
 <ol>
-<li>打开终端，使用cd命令定位到需要统计的功能目录，这个相信大家都会。</li>
-<li>输入如下代码：<br><code>$ find . &quot;(&quot; -name &quot;*.m&quot; -or -name &quot;*.mm&quot; -or -name &quot;*.cpp&quot; -or -name &quot;*.h&quot; -or -name &quot;*.rss&quot; &quot;)&quot; -print | xargs wc -l</code></li>
+<li>CTFontRef</li>
+<li>CTRunDelegateCallbacks</li>
+<li>CTRunDelegateRef</li>
+<li>CFAttributedStringRef</li>
+<li>CTFramesetterRef</li>
+<li>CGPathRef</li>
+<li>CTFrameRef</li>
+<li>CTLineRef</li>
+<li>CTRunRef</li>
+<li>CFArrayRef</li>
+<li>CFIndex</li>
+<li>CFRange</li>
 </ol>
-<p>&emsp;&emsp;接下来终端就会打印出每个文件代码行数和总的代码行数，在此就不给大家截图演示了（PS：实际的代码和一百万差距太大了，(⊙﹏⊙)），快一起来测试你们的代码量！</p>
+<p>常用方法（按照项目中方法使用顺序排序）</p>
+<ol>
+<li><p>创建CTRunDelegateRef, 需要__bridge_retained桥转，防止被系统回收<br>CTRunDelegateRef _Nullable CTRunDelegateCreate(<br>const CTRunDelegateCallbacks<em> callbacks,<br>void </em> _Nullable refCon ) CT_AVAILABLE(macos(10.5), ios(3.2), watchos(2.0), tvos(9.0));</p>
+</li>
+<li><p>设置RunDelegate代理<br>range : CFRangeMake(0, 1),CTRun为图片，起始0，长度1<br>attrName ：kCTRunDelegateAttributeName<br>CF_EXPORT void CFAttributedStringSetAttribute(CFMutableAttributedStringRef aStr, CFRange range, CFStringRef attrName, CFTypeRef value);</p>
+</li>
+<li><p>创建CTFontRef字体<br>CTFontRef CTFontCreateWithName(<br>CFStringRef                 name,<br>CGFloat                     size,<br>const CGAffineTransform * _Nullable matrix ) CT_AVAILABLE(macos(10.5), ios(3.2), watchos(2.0), tvos(9.0));</p>
+</li>
+<li><p>创建CTFramesetterRef<br>CTFramesetterRef CTFramesetterCreateWithAttributedString(<br>CFAttributedStringRef string ) CT_AVAILABLE(macos(10.5), ios(3.2), watchos(2.0), tvos(9.0));</p>
+</li>
+<li><p>创建CTPathRef<br>CG_EXTERN CGPathRef  CGPathCreateWithRect(CGRect rect,<br>const CGAffineTransform * __nullable transform)<br>CG_AVAILABLE_STARTING(10.5, 4.0);</p>
+</li>
+<li><p>创建CTFrameRef<br>framesetter : CTFramesetterRef<br>stringRange : 设置多大就显示多少字符。设置length为0时，一直渲染，直到渲染的字符串结束或者超出path设置的范围<br>frameAttributes ：额外控制frame的属性字典，没有时填入NULL<br>CTFrameRef CTFramesetterCreateFrame(<br>CTFramesetterRef framesetter,<br>CFRange stringRange,<br>CGPathRef path,<br>CFDictionaryRef _Nullable frameAttributes ) CT_AVAILABLE(macos(10.5), ios(3.2), watchos(2.0), tvos(9.0));</p>
+</li>
+<li><p>frame的范围转换成此frame在全部字符串中的Range<br>CFRange CTFrameGetVisibleStringRange(<br>CTFrameRef frame ) CT_AVAILABLE(macos(10.5), ios(3.2), watchos(2.0), tvos(9.0));</p>
+</li>
+<li><p>获取组成frame的所有CTLine数组<br>CFArrayRef CTFrameGetLines(<br>CTFrameRef frame ) CT_AVAILABLE(macos(10.5), ios(3.2), watchos(2.0), tvos(9.0));</p>
+</li>
+<li><p>获取每一行的起始点，保存在origins数组中<br>frame : 存储有所有行信息，传入的frame的所有行坐标点会被复制一份<br>range : 想要获取的行坐标的范围，如果range的length是0，复制操作会重新从range的start位置继续，直到复制完成<br>origins : 一个CGPoint类型的数组指针，用来接收从frame中复制出来的行坐标<br>void CTFrameGetLineOrigins(<br>CTFrameRef frame,<br>CFRange range,<br>CGPoint origins[_Nonnull] ) CT_AVAILABLE(macos(10.5), ios(3.2), watchos(2.0), tvos(9.0));</p>
+</li>
+<li><p>获取CTLine包含的所有的CTRun<br>CFArrayRef CTLineGetGlyphRuns(<br>CTLineRef line ) CT_AVAILABLE(macos(10.5), ios(3.2), watchos(2.0), tvos(9.0));</p>
+</li>
+<li><p>获取CTRun保存的属性。获取到的内容是通过CFAttributedStringSetAttribute方法设置给图片属性字符串的NSDictionary，key为kCTRunDelegateAttributeName，值为CTRunDelegateRef<br>CFDictionaryRef CTRunGetAttributes(<br>CTRunRef run ) CT_AVAILABLE(macos(10.5), ios(3.2), watchos(2.0), tvos(9.0));</p>
+</li>
+<li><p>从delegate中获取使用CTRunDelegateCreate初始时候设置的元数据<br>void * CTRunDelegateGetRefCon(<br>CTRunDelegateRef runDelegate ) CT_AVAILABLE(macos(10.5), ios(3.2), watchos(2.0), tvos(9.0));</p>
+</li>
+<li><p>获取CTRun的绘制属性ascent、desent，返回值是CTRun的宽度<br>double CTRunGetTypographicBounds(<br>CTRunRef run,<br>CFRange range,<br>CGFloat <em> _Nullable ascent,<br>CGFloat </em> _Nullable descent,<br>CGFloat * _Nullable leading ) CT_AVAILABLE(macos(10.5), ios(3.2), watchos(2.0), tvos(9.0));</p>
+</li>
+<li><p>获取CTRun在整段文字中的Range<br>CFRange CTRunGetStringRange(<br>CTRunRef run ) CT_AVAILABLE(macos(10.5), ios(3.2), watchos(2.0), tvos(9.0));</p>
+</li>
+<li><p>获取整段文字中charIndex位置的字符相对所在line的原点的x值<br>CGFloat CTLineGetOffsetForStringIndex(<br>CTLineRef line,<br>CFIndex charIndex,<br>CGFloat * _Nullable secondaryOffset ) CT_AVAILABLE(macos(10.5), ios(3.2), watchos(2.0), tvos(9.0));</p>
+</li>
+<li><p>获得CTFrame的绘制区域<br>CGPathRef CTFrameGetPath(<br>CTFrameRef frame ) CT_AVAILABLE(macos(10.5), ios(3.2), watchos(2.0), tvos(9.0));</p>
+</li>
+<li><p>获取边界框<br>CG_EXTERN CGRect CGPathGetBoundingBox(CGPathRef cg_nullable path)<br>CG_AVAILABLE_STARTING(10.2, 2.0);</p>
+</li>
+<li><p>rect 按照（dx，dy）进行平移<br>CG_EXTERN CGRect CGRectOffset(CGRect rect, CGFloat dx, CGFloat dy)<br>CG_AVAILABLE_STARTING(10.0, 2.0);</p>
+</li>
+<li><p>获取数组中的元素个数<br>CF_EXPORT<br>CFIndex CFArrayGetCount(CFArrayRef theArray);</p>
+</li>
+<li><p>这是一个实现相对位移的函数，每次位移都是相对于UIKit坐标下的（0，0）点<br>CG_EXTERN CGAffineTransform CGAffineTransformMakeTranslation(CGFloat tx,<br>CGFloat ty) CG_AVAILABLE_STARTING(10.0, 2.0);</p>
+</li>
+<li><p>一个用于处理形变的类,其可以改变控件的平移、缩放、旋转等,其坐标系统采用的是二维坐标系,即向右为x轴正方向,向下为y轴正方向<br>t ： CGAffineTransform<br>sx ： 当sx为正值时，会在x轴方向上缩放x倍，反之，则在缩放的基础上沿着竖直线翻转<br>sy ： 当sy为正值时，会在y轴方向上缩放y倍，反之，则在缩放的基础上沿着水平线翻转<br>CG_EXTERN CGAffineTransform CGAffineTransformScale(CGAffineTransform t,<br>CGFloat sx, CGFloat sy) CG_AVAILABLE_STARTING(10.0, 2.0);</p>
+</li>
+<li><p>获取CTLine数组中第idx个line元素，<br>CF_EXPORT<br>const void *CFArrayGetValueAtIndex(CFArrayRef theArray, CFIndex idx);</p>
+</li>
+<li><p>获取CTLine的上行高度，下行高度，返回值是CTLine的行距<br>double CTLineGetTypographicBounds(<br>CTLineRef line,<br>CGFloat <em> _Nullable ascent,<br>CGFloat </em> _Nullable descent,<br>CGFloat * _Nullable leading ) CT_AVAILABLE(macos(10.5), ios(3.2), watchos(2.0), tvos(9.0));</p>
+</li>
+<li><p>坐标系转换<br>CG_EXTERN CGRect CGRectApplyAffineTransform(CGRect rect, CGAffineTransform t)<br>CG_AVAILABLE_STARTING(10.4, 2.0);</p>
+</li>
+<li><p>获取点击处position文字在整段文字中的index<br>CFIndex CTLineGetStringIndexForPosition(<br>CTLineRef line,<br>CGPoint position ) CT_AVAILABLE(macos(10.5), ios(3.2), watchos(2.0), tvos(9.0));</p>
+</li>
+<li><p>获取CTLine中文字在整段文字中的Range<br>CFRange CTLineGetStringRange(<br>CTLineRef line ) CT_AVAILABLE(macos(10.5), ios(3.2), watchos(2.0), tvos(9.0));</p>
+</li>
+</ol>
 
       
     </div>
@@ -361,12 +425,6 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/IT生活/" rel="tag"># IT生活</a>
-          
-        </div>
-      
 
       
       
@@ -376,8 +434,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/12/11/TheBeginningBlog/" rel="next" title="开篇博客">
-                <i class="fa fa-chevron-left"></i> 开篇博客
+              <a href="/2019/03/20/iRecognizerBlog/" rel="next" title="iRecognizer隐私政策">
+                <i class="fa fa-chevron-left"></i> iRecognizer隐私政策
               </a>
             
           </div>
@@ -385,10 +443,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/01/20/douyoublog/" rel="prev" title="Berjuang隐私政策">
-                Berjuang隐私政策 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
