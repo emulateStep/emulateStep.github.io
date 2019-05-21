@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="堆排序(HeapSort)，与归并排序一样，但不同于插入排序的是，堆排序的时间复杂度是O(nlgn)，空间复杂度是O(n)。而与插入排序相同，但不同于归并排序的是，堆排序同样具有空间原址性：任何时候都只需要常数个额外的元素空间存储临时数据。 堆排序引入的算法设计技巧：使用一种我们称为“堆”的数据结构来进行信息管理。堆不仅用于堆排序中，而且它也可以构造一种有效的优先队列。 虽然“堆”这一词源自堆排序">
+<meta property="og:type" content="article">
+<meta property="og:title" content="堆排序">
+<meta property="og:url" content="http://yoursite.com/2019/05/20/BinayTreeBlock/index.html">
+<meta property="og:site_name" content="Dear少年">
+<meta property="og:description" content="堆排序(HeapSort)，与归并排序一样，但不同于插入排序的是，堆排序的时间复杂度是O(nlgn)，空间复杂度是O(n)。而与插入排序相同，但不同于归并排序的是，堆排序同样具有空间原址性：任何时候都只需要常数个额外的元素空间存储临时数据。 堆排序引入的算法设计技巧：使用一种我们称为“堆”的数据结构来进行信息管理。堆不仅用于堆排序中，而且它也可以构造一种有效的优先队列。 虽然“堆”这一词源自堆排序">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://raw.githubusercontent.com/937447974/Blog/master/Resources/2015111501.gif">
+<meta property="og:image" content="https://raw.githubusercontent.com/937447974/Blog/master/Resources/2015111502.png">
+<meta property="og:updated_time" content="2019-05-21T07:55:55.658Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="堆排序">
+<meta name="twitter:description" content="堆排序(HeapSort)，与归并排序一样，但不同于插入排序的是，堆排序的时间复杂度是O(nlgn)，空间复杂度是O(n)。而与插入排序相同，但不同于归并排序的是，堆排序同样具有空间原址性：任何时候都只需要常数个额外的元素空间存储临时数据。 堆排序引入的算法设计技巧：使用一种我们称为“堆”的数据结构来进行信息管理。堆不仅用于堆排序中，而且它也可以构造一种有效的优先队列。 虽然“堆”这一词源自堆排序">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/937447974/Blog/master/Resources/2015111501.gif">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/05/20/BinayTreeBlock/"/>
+
+
+
+
+
+  <title>堆排序 | Dear少年</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Dear少年</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-schedule">
+          <a href="/schedule/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br />
+            
+            日程表
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/20/BinayTreeBlock/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Dear少年">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://img1.touxiang.cn/uploads/20131125/25-034343_597.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dear少年">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">堆排序</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-20T15:55:25+08:00">
+                2019-05-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><strong>堆排序(HeapSort)</strong>，与归并排序一样，但不同于插入排序的是，堆排序的时间复杂度是O(nlgn)，空间复杂度是O(n)。而与插入排序相同，但不同于归并排序的是，堆排序同样具有空间原址性：任何时候都只需要常数个额外的元素空间存储临时数据。</p>
+<p>堆排序引入的算法设计技巧：使用一种我们称为“堆”的数据结构来进行信息管理。堆不仅用于堆排序中，而且它也可以构造一种有效的优先队列。</p>
+<p>虽然“堆”这一词源自堆排序，但是目前它已经被引申为“垃圾收集存储机制”，例如在Java和Lisp语言中所定义的。强调一下，这里使用的堆不是垃圾收集存储，而是堆数据结构。</p>
+<h1 id="1-堆"><a href="#1-堆" class="headerlink" title="1 堆"></a>1 堆</h1><h2 id="1-1-堆的定义"><a href="#1-1-堆的定义" class="headerlink" title="1.1 堆的定义"></a>1.1 堆的定义</h2><p>（二叉）堆是一个数组，它可以被看成一个近似的完成二叉树。树上的每一个结点对应数组的一个元素。除了最底层外，该树是完全充满的，而且是从左向右填充。表示堆的数组A两个属性：A.length表示给出元素的个数，heapSize表示有多少个堆元素存储在该数组中。也就是说，虽然A[0..A.length-1]可能存有数据，但只有A[0..A.heapSize]中存放的是堆的有效元素，这里，</p>
+<p><strong>0 &lt;= A.heapSize &lt;= A.length</strong></p>
+<p><strong>树的根节点是A[0]</strong></p>
+<p><img src="https://raw.githubusercontent.com/937447974/Blog/master/Resources/2015111501.gif" alt=""></p>
+<h2 id="1-2-最大堆和最小堆"><a href="#1-2-最大堆和最小堆" class="headerlink" title="1.2 最大堆和最小堆"></a>1.2 最大堆和最小堆</h2><p>二叉堆可以分为两种形式：最大堆和最小堆。在这两种堆中，节点的值都是满足堆的性质，但一些细节定义则有所差异。</p>
+<p>在最大堆中，最大堆性质是指除了根以外的所有节点i都要满足：</p>
+<p><strong>A[parent(i)] &gt;= A[i]</strong></p>
+<p>也就是说，某个节点的值至多与其父结点一样大。因此，堆的最大元素存放在根节点中；并且，在任一子树中，该子树所包含的所有节点的值都不大于该子树根节点的值。</p>
+<p>最小堆的组织方式正好相反：最小堆性质是指除了根以外的所有节点i都有</p>
+<p><strong>A[parent(i)] &lt;= A[i]</strong></p>
+<p>最小堆中的最小元素存放根节点中。</p>
+<p><img src="https://raw.githubusercontent.com/937447974/Blog/master/Resources/2015111502.png" alt=""></p>
+<p>在堆排序算法中，我们使用的是最大堆，源于最小堆可以自行研究。</p>
+<h1 id="2-结点"><a href="#2-结点" class="headerlink" title="2 结点"></a>2 结点</h1><p>树的根结点是A[0]。这样给定一个下标i，我们就很容易计算得到它的父结点、左结点和右结点的下标。我们使用数组搭建堆的结构，这里运用到了HeapSort类。HeapSort类代码如下。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">//  HeapSort.swift</span></span><br><span class="line"><span class="comment">//  HeapSort</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">//  CSDN:http://blog.csdn.net/y550918116j</span></span><br><span class="line"><span class="comment">//  GitHub:https://github.com/937447974/Blog</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">//  Created by yangjun on 15/11/15.</span></span><br><span class="line"><span class="comment">//  Copyright © 2015年 阳君. All rights reserved.</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> Foundation</span><br><span class="line"></span><br><span class="line"><span class="comment">/// 堆排序</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">HeapSort</span>: <span class="title">NSObject</span> </span>&#123;</span><br><span class="line"></span><br><span class="line"><span class="comment">/// 数组</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">var</span> list:<span class="type">Array</span>&lt;<span class="type">Int</span>&gt; = []</span><br><span class="line"><span class="comment">/// 堆长度</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">var</span> heapSize = <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//MARK: 初始化</span></span><br><span class="line"><span class="keyword">init</span>(list:[<span class="type">Int</span>]) &#123;</span><br><span class="line"><span class="keyword">self</span>.list = list</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// MARK: - 父节点</span></span><br><span class="line"><span class="keyword">private</span> <span class="function"><span class="keyword">func</span> <span class="title">parent</span><span class="params">(i:Int)</span></span> -&gt; <span class="type">Int</span> &#123;</span><br><span class="line"><span class="keyword">return</span> (i + <span class="number">1</span>) / <span class="number">2</span> - <span class="number">1</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// MARK: 左节点</span></span><br><span class="line"><span class="keyword">private</span> <span class="function"><span class="keyword">func</span> <span class="title">left</span><span class="params">(i:Int)</span></span> -&gt; <span class="type">Int</span> &#123;</span><br><span class="line"><span class="keyword">return</span> <span class="number">2</span> * i + <span class="number">1</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// MARK: 右节点</span></span><br><span class="line"><span class="keyword">private</span> <span class="function"><span class="keyword">func</span> <span class="title">right</span><span class="params">(i:Int)</span></span> -&gt; <span class="type">Int</span> &#123;</span><br><span class="line"><span class="keyword">return</span> <span class="number">2</span> * i + <span class="number">2</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里我们使用数组list记录堆，并使用heapSize记录堆的有效长度。</p>
+<h1 id="3-维护堆的性质"><a href="#3-维护堆的性质" class="headerlink" title="3 维护堆的性质"></a>3 维护堆的性质</h1><p>在HeapSort添加maxHeapify方法体。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// MARK: 维护最大堆</span></span><br><span class="line"><span class="keyword">private</span> <span class="function"><span class="keyword">func</span> <span class="title">maxHeapify</span><span class="params">(i:Int)</span></span> &#123;</span><br><span class="line"><span class="comment">// 最大堆的基础算法，使用“逐级下降”原理，时间复杂度O(h树高)</span></span><br><span class="line"><span class="keyword">let</span> l = <span class="keyword">self</span>.<span class="keyword">left</span>(i)</span><br><span class="line"><span class="keyword">let</span> r = <span class="keyword">self</span>.<span class="keyword">right</span>(i)</span><br><span class="line"><span class="keyword">var</span> largest = i</span><br><span class="line"><span class="comment">// 找出最大的那个数</span></span><br><span class="line"><span class="keyword">if</span> l &lt; heapSize &amp;&amp; <span class="keyword">self</span>.list[l] &gt; <span class="keyword">self</span>.list[largest] &#123;</span><br><span class="line">largest = l</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> r &lt; heapSize &amp;&amp; <span class="keyword">self</span>.list[r] &gt; <span class="keyword">self</span>.list[largest] &#123;</span><br><span class="line">largest = r</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 是否需要改变</span></span><br><span class="line"><span class="keyword">if</span> largest != i &#123;</span><br><span class="line"><span class="keyword">self</span>.exchange(i, change: largest)</span><br><span class="line"><span class="keyword">self</span>.maxHeapify(largest)</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// MARK: 交换节点</span></span><br><span class="line"><span class="keyword">private</span> <span class="function"><span class="keyword">func</span> <span class="title">exchange</span><span class="params">(i:Int, change:Int)</span></span> &#123;</span><br><span class="line"><span class="keyword">let</span> tempI:<span class="type">Int</span> = <span class="keyword">self</span>.list[i]</span><br><span class="line"><span class="keyword">self</span>.list[i] = <span class="keyword">self</span>.list[change]</span><br><span class="line"><span class="keyword">self</span>.list[change] = tempI</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>maxHeapify是用于维护最大堆性质的重要过程。它的输入为一个下标i。在调用maxHeapify的时候，我们假定根结点的left(i)和right(i)的二叉树都是最大堆。但这时list[i]有可能小于其孩子，这样就违背了最大堆的性质。maxHeapify通过让list[i]的值在最大堆中“逐级下降”，从而使得下标i为根结点的子树重新遵循最大堆的性质。</p>
+<h1 id="4-建堆"><a href="#4-建堆" class="headerlink" title="4 建堆"></a>4 建堆</h1><p>我们可以用自底向上的方法利用maxHeapify把一个大小为n=list.count的数组list[0…n-1]转换为最大堆。子数组list[(n/2)+1..n]中的元素都是树德叶结点。每个叶结点都可以看成只包含含一个元素的堆。过程buildMaxHeap对树中的其他结点都调用一次maxHeapify。</p>
+<p>在HeapSort中添加方法buildMaxHeap。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// MARK: - 建立最大堆</span></span><br><span class="line"><span class="keyword">private</span> <span class="function"><span class="keyword">func</span> <span class="title">buildMaxHeap</span><span class="params">()</span></span> &#123;</span><br><span class="line"><span class="comment">// 时间复杂度O(n)</span></span><br><span class="line"><span class="keyword">self</span>.heapSize = <span class="keyword">self</span>.list.<span class="built_in">count</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="keyword">self</span>.list.<span class="built_in">count</span> / <span class="number">2</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line"><span class="keyword">self</span>.maxHeapify(i)</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="5-堆排序算法"><a href="#5-堆排序算法" class="headerlink" title="5 堆排序算法"></a>5 堆排序算法</h1><p>初始时候，堆排序算法利用buildMaxHeap将list建成最大堆。因为数组中的最大元素总是在根结点list[0]中，我们把她与list[n-1]进行互换，我们可以让该元素放到正确的位置。</p>
+<p>这时候，如果我们从堆中去掉结点n-1(这里通过减少heapSize的值来实现)，剩余的结点中，原来根的孩子结点仍然是最大堆，而新的根结点可能会违背最大堆的性质。为了维护最大堆的性质，我们要做的就是调用maxHeapify(0)，从而在list[0, heapSize]构造一个新的最大堆。</p>
+<p>堆排序算法会不断重复这一过程，直到堆的大小从heapSize-1降到0。</p>
+<p>在HeapSort中的方法heapSort实现如下。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// MARK: - 堆排序</span></span><br><span class="line"><span class="comment">/// 堆排序</span></span><br><span class="line"><span class="comment">///</span></span><br><span class="line"><span class="comment">/// - returns: [Int]</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">heapSort</span><span class="params">()</span></span> -&gt; [<span class="type">Int</span>]&#123;</span><br><span class="line"><span class="comment">// 排序结果为从小到大</span></span><br><span class="line"><span class="keyword">self</span>.buildMaxHeap()</span><br><span class="line"><span class="keyword">let</span> heap = <span class="keyword">self</span>.list <span class="comment">// 存储最大堆</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="keyword">self</span>.heapSize - <span class="number">1</span>; i &gt; <span class="number">0</span>; i--) &#123;</span><br><span class="line"><span class="comment">// 最后一个位置保存堆最大的数</span></span><br><span class="line"><span class="keyword">self</span>.exchange(i, change: <span class="number">0</span>)</span><br><span class="line"><span class="keyword">self</span>.heapSize--</span><br><span class="line"><span class="keyword">self</span>.maxHeapify(<span class="number">0</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> heapSort = <span class="keyword">self</span>.list</span><br><span class="line"><span class="keyword">self</span>.list = heap <span class="comment">// 恢复最大堆</span></span><br><span class="line"><span class="keyword">return</span> heapSort</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="6-优先队列"><a href="#6-优先队列" class="headerlink" title="6 优先队列"></a>6 优先队列</h1><p>堆排序时一个优先的算法，但是在实际应用中，还有更快的排序算法。尽管如此，堆这一数据结构仍然有很多应用。这里我们介绍堆的一种应用优先队列。和堆一样，优先队列也有两种形式：最大优先队列和最小优先队列。这里只介绍基于最大堆的最大优先队列。</p>
+<h2 id="6-1-返回最大的元素"><a href="#6-1-返回最大的元素" class="headerlink" title="6.1 返回最大的元素"></a>6.1 返回最大的元素</h2><p>在HeapSort中使用方法maxiMum实现返回最大的元素。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// MARK: 返回最大值</span></span><br><span class="line"><span class="comment">/// 返回最大值</span></span><br><span class="line"><span class="comment">///</span></span><br><span class="line"><span class="comment">/// - returns: Int?</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">maxiMum</span><span class="params">()</span></span> -&gt; <span class="type">Int</span>? &#123;</span><br><span class="line"><span class="keyword">return</span> <span class="keyword">self</span>.list.first</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="6-2-返回最大元素的同时并删除"><a href="#6-2-返回最大元素的同时并删除" class="headerlink" title="6.2 返回最大元素的同时并删除"></a>6.2 返回最大元素的同时并删除</h2><p>在HeapSort中使用方法maxiMum实现返回最大元素的同时并删除。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// MARK: - 返回最大值的同时删除最大值</span></span><br><span class="line"><span class="comment">/// 返回最大值的同时删除最大值</span></span><br><span class="line"><span class="comment">///</span></span><br><span class="line"><span class="comment">/// - returns: void</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">extractMax</span><span class="params">()</span></span> -&gt; <span class="type">Int</span>? &#123;</span><br><span class="line"><span class="keyword">let</span> <span class="built_in">max</span> = <span class="keyword">self</span>.list.first</span><br><span class="line"><span class="keyword">if</span> <span class="built_in">max</span> != <span class="literal">nil</span> &#123;</span><br><span class="line"><span class="comment">// 删除最大值，后重新维护最大堆</span></span><br><span class="line"><span class="keyword">self</span>.list[<span class="number">0</span>] = <span class="keyword">self</span>.list.last!</span><br><span class="line"><span class="keyword">self</span>.list.removeLast()</span><br><span class="line"><span class="keyword">self</span>.heapSize = <span class="keyword">self</span>.list.<span class="built_in">count</span></span><br><span class="line"><span class="keyword">self</span>.maxHeapify(<span class="number">0</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> <span class="built_in">max</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="6-3-插入一个元素"><a href="#6-3-插入一个元素" class="headerlink" title="6.3 插入一个元素"></a>6.3 插入一个元素</h2><p>在HeapSort中使用方法maxiMum实现插入一个元素，插入元素后，堆还是最大堆。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// MARK: 插入一个元素</span></span><br><span class="line"><span class="comment">/// 插入一个元素</span></span><br><span class="line"><span class="comment">///</span></span><br><span class="line"><span class="comment">/// - parameter x : 要插入的元素</span></span><br><span class="line"><span class="comment">///</span></span><br><span class="line"><span class="comment">/// - returns: void</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">insert</span><span class="params">(x:Int)</span></span> &#123;</span><br><span class="line"><span class="keyword">self</span>.list.append(x)</span><br><span class="line"><span class="keyword">self</span>.buildMaxHeap()</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="5-测试"><a href="#5-测试" class="headerlink" title="5 测试"></a>5 测试</h1><h2 id="5-1-测试代码"><a href="#5-1-测试代码" class="headerlink" title="5.1 测试代码"></a>5.1 测试代码</h2><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> list:[<span class="type">Int</span>] = []</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i+=<span class="number">2</span>) &#123;</span><br><span class="line">list.append(i)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">9</span>; i &gt; <span class="number">0</span>; i-=<span class="number">2</span>) &#123;</span><br><span class="line">list.append(i)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> heap = <span class="type">HeapSort</span>(list: list)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">"堆排序:<span class="subst">\(heap.heapSort()</span>)"</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">"堆最大值:<span class="subst">\(heap.maxiMum()</span>)"</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">"提取堆最大值并删除:<span class="subst">\(heap.extractMax()</span>)"</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">"堆排序:<span class="subst">\(heap.heapSort()</span>)"</span>)</span><br><span class="line"></span><br><span class="line">heap.insert(<span class="number">2</span>)<span class="comment">// 插入一个元素</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">"堆排序:<span class="subst">\(heap.heapSort()</span>)"</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="5-2-结果"><a href="#5-2-结果" class="headerlink" title="5.2 结果"></a>5.2 结果</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">堆排序:[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]</span><br><span class="line">堆最大值:Optional(9)</span><br><span class="line">提取堆最大值并删除:Optional(9)</span><br><span class="line">堆排序:[0, 1, 2, 3, 4, 5, 6, 7, 8]</span><br><span class="line">堆排序:[0, 1, 2, 2, 3, 4, 5, 6, 7, 8]</span><br></pre></td></tr></table></figure>
+<p>&#160;</p>
+<hr>
+<h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><h2 id="源代码"><a href="#源代码" class="headerlink" title="源代码"></a>源代码</h2><p><a href="https://github.com/937447974/Algorithms" target="_blank" rel="noopener">Algorithms</a></p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="https://github.com/937447974/LearningMaterials" target="_blank" rel="noopener">算法导论</a></p>
+<h2 id="文档修改记录"><a href="#文档修改记录" class="headerlink" title="文档修改记录"></a>文档修改记录</h2><table>
+<thead>
+<tr>
+<th>时间</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2015-11-15</td>
+<td>算法完成</td>
+</tr>
+<tr>
+<td>2015-11-16</td>
+<td>博文完成</td>
+</tr>
+</tbody>
+</table>
+<h2 id="版权所有"><a href="#版权所有" class="headerlink" title="版权所有"></a>版权所有</h2><p>CSDN：<a href="http://blog.csdn.net/y550918116j" target="_blank" rel="noopener">http://blog.csdn.net/y550918116j</a></p>
+<p>GitHub：<a href="https://github.com/937447974/Blog" target="_blank" rel="noopener">https://github.com/937447974/Blog</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/05/01/DuoMiMaintenanceBlock/" rel="next" title="多米易修隐私政策">
+                <i class="fa fa-chevron-left"></i> 多米易修隐私政策
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="http://img1.touxiang.cn/uploads/20131125/25-034343_597.jpg"
+                alt="Dear少年" />
+            
+              <p class="site-author-name" itemprop="name">Dear少年</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-堆"><span class="nav-number">1.</span> <span class="nav-text"><a href="#1-&#x5806;" class="headerlink" title="1 &#x5806;"></a>1 &#x5806;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-堆的定义"><span class="nav-number">1.1.</span> <span class="nav-text"><a href="#1-1-&#x5806;&#x7684;&#x5B9A;&#x4E49;" class="headerlink" title="1.1 &#x5806;&#x7684;&#x5B9A;&#x4E49;"></a>1.1 &#x5806;&#x7684;&#x5B9A;&#x4E49;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-最大堆和最小堆"><span class="nav-number">1.2.</span> <span class="nav-text"><a href="#1-2-&#x6700;&#x5927;&#x5806;&#x548C;&#x6700;&#x5C0F;&#x5806;" class="headerlink" title="1.2 &#x6700;&#x5927;&#x5806;&#x548C;&#x6700;&#x5C0F;&#x5806;"></a>1.2 &#x6700;&#x5927;&#x5806;&#x548C;&#x6700;&#x5C0F;&#x5806;</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-结点"><span class="nav-number">2.</span> <span class="nav-text"><a href="#2-&#x7ED3;&#x70B9;" class="headerlink" title="2 &#x7ED3;&#x70B9;"></a>2 &#x7ED3;&#x70B9;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-维护堆的性质"><span class="nav-number">3.</span> <span class="nav-text"><a href="#3-&#x7EF4;&#x62A4;&#x5806;&#x7684;&#x6027;&#x8D28;" class="headerlink" title="3 &#x7EF4;&#x62A4;&#x5806;&#x7684;&#x6027;&#x8D28;"></a>3 &#x7EF4;&#x62A4;&#x5806;&#x7684;&#x6027;&#x8D28;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-建堆"><span class="nav-number">4.</span> <span class="nav-text"><a href="#4-&#x5EFA;&#x5806;" class="headerlink" title="4 &#x5EFA;&#x5806;"></a>4 &#x5EFA;&#x5806;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-堆排序算法"><span class="nav-number">5.</span> <span class="nav-text"><a href="#5-&#x5806;&#x6392;&#x5E8F;&#x7B97;&#x6CD5;" class="headerlink" title="5 &#x5806;&#x6392;&#x5E8F;&#x7B97;&#x6CD5;"></a>5 &#x5806;&#x6392;&#x5E8F;&#x7B97;&#x6CD5;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6-优先队列"><span class="nav-number">6.</span> <span class="nav-text"><a href="#6-&#x4F18;&#x5148;&#x961F;&#x5217;" class="headerlink" title="6 &#x4F18;&#x5148;&#x961F;&#x5217;"></a>6 &#x4F18;&#x5148;&#x961F;&#x5217;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#6-1-返回最大的元素"><span class="nav-number">6.1.</span> <span class="nav-text"><a href="#6-1-&#x8FD4;&#x56DE;&#x6700;&#x5927;&#x7684;&#x5143;&#x7D20;" class="headerlink" title="6.1 &#x8FD4;&#x56DE;&#x6700;&#x5927;&#x7684;&#x5143;&#x7D20;"></a>6.1 &#x8FD4;&#x56DE;&#x6700;&#x5927;&#x7684;&#x5143;&#x7D20;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-2-返回最大元素的同时并删除"><span class="nav-number">6.2.</span> <span class="nav-text"><a href="#6-2-&#x8FD4;&#x56DE;&#x6700;&#x5927;&#x5143;&#x7D20;&#x7684;&#x540C;&#x65F6;&#x5E76;&#x5220;&#x9664;" class="headerlink" title="6.2 &#x8FD4;&#x56DE;&#x6700;&#x5927;&#x5143;&#x7D20;&#x7684;&#x540C;&#x65F6;&#x5E76;&#x5220;&#x9664;"></a>6.2 &#x8FD4;&#x56DE;&#x6700;&#x5927;&#x5143;&#x7D20;&#x7684;&#x540C;&#x65F6;&#x5E76;&#x5220;&#x9664;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-3-插入一个元素"><span class="nav-number">6.3.</span> <span class="nav-text"><a href="#6-3-&#x63D2;&#x5165;&#x4E00;&#x4E2A;&#x5143;&#x7D20;" class="headerlink" title="6.3 &#x63D2;&#x5165;&#x4E00;&#x4E2A;&#x5143;&#x7D20;"></a>6.3 &#x63D2;&#x5165;&#x4E00;&#x4E2A;&#x5143;&#x7D20;</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-测试"><span class="nav-number">7.</span> <span class="nav-text"><a href="#5-&#x6D4B;&#x8BD5;" class="headerlink" title="5 &#x6D4B;&#x8BD5;"></a>5 &#x6D4B;&#x8BD5;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#5-1-测试代码"><span class="nav-number">7.1.</span> <span class="nav-text"><a href="#5-1-&#x6D4B;&#x8BD5;&#x4EE3;&#x7801;" class="headerlink" title="5.1 &#x6D4B;&#x8BD5;&#x4EE3;&#x7801;"></a>5.1 &#x6D4B;&#x8BD5;&#x4EE3;&#x7801;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-2-结果"><span class="nav-number">7.2.</span> <span class="nav-text"><a href="#5-2-&#x7ED3;&#x679C;" class="headerlink" title="5.2 &#x7ED3;&#x679C;"></a>5.2 &#x7ED3;&#x679C;</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#其他"><span class="nav-number">8.</span> <span class="nav-text"><a href="#&#x5176;&#x4ED6;" class="headerlink" title="&#x5176;&#x4ED6;"></a>&#x5176;&#x4ED6;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#源代码"><span class="nav-number">8.1.</span> <span class="nav-text"><a href="#&#x6E90;&#x4EE3;&#x7801;" class="headerlink" title="&#x6E90;&#x4EE3;&#x7801;"></a>&#x6E90;&#x4EE3;&#x7801;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">8.2.</span> <span class="nav-text"><a href="#&#x53C2;&#x8003;&#x8D44;&#x6599;" class="headerlink" title="&#x53C2;&#x8003;&#x8D44;&#x6599;"></a>&#x53C2;&#x8003;&#x8D44;&#x6599;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文档修改记录"><span class="nav-number">8.3.</span> <span class="nav-text"><a href="#&#x6587;&#x6863;&#x4FEE;&#x6539;&#x8BB0;&#x5F55;" class="headerlink" title="&#x6587;&#x6863;&#x4FEE;&#x6539;&#x8BB0;&#x5F55;"></a>&#x6587;&#x6863;&#x4FEE;&#x6539;&#x8BB0;&#x5F55;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#版权所有"><span class="nav-number">8.4.</span> <span class="nav-text"><a href="#&#x7248;&#x6743;&#x6240;&#x6709;" class="headerlink" title="&#x7248;&#x6743;&#x6240;&#x6709;"></a>&#x7248;&#x6743;&#x6240;&#x6709;</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Dear少年</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
