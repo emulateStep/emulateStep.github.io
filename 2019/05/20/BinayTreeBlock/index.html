@@ -88,7 +88,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://raw.githubusercontent.com/937447974/Blog/master/Resources/2015111501.gif">
 <meta property="og:image" content="https://raw.githubusercontent.com/937447974/Blog/master/Resources/2015111502.png">
-<meta property="og:updated_time" content="2019-05-21T07:55:55.658Z">
+<meta property="og:updated_time" content="2019-05-21T07:57:00.428Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="堆排序">
 <meta name="twitter:description" content="堆排序(HeapSort)，与归并排序一样，但不同于插入排序的是，堆排序的时间复杂度是O(nlgn)，空间复杂度是O(n)。而与插入排序相同，但不同于归并排序的是，堆排序同样具有空间原址性：任何时候都只需要常数个额外的元素空间存储临时数据。 堆排序引入的算法设计技巧：使用一种我们称为“堆”的数据结构来进行信息管理。堆不仅用于堆排序中，而且它也可以构造一种有效的优先队列。 虽然“堆”这一词源自堆排序">
@@ -345,6 +345,7 @@
         <p><strong>堆排序(HeapSort)</strong>，与归并排序一样，但不同于插入排序的是，堆排序的时间复杂度是O(nlgn)，空间复杂度是O(n)。而与插入排序相同，但不同于归并排序的是，堆排序同样具有空间原址性：任何时候都只需要常数个额外的元素空间存储临时数据。</p>
 <p>堆排序引入的算法设计技巧：使用一种我们称为“堆”的数据结构来进行信息管理。堆不仅用于堆排序中，而且它也可以构造一种有效的优先队列。</p>
 <p>虽然“堆”这一词源自堆排序，但是目前它已经被引申为“垃圾收集存储机制”，例如在Java和Lisp语言中所定义的。强调一下，这里使用的堆不是垃圾收集存储，而是堆数据结构。</p>
+<a id="more"></a>
 <h1 id="1-堆"><a href="#1-堆" class="headerlink" title="1 堆"></a>1 堆</h1><h2 id="1-1-堆的定义"><a href="#1-1-堆的定义" class="headerlink" title="1.1 堆的定义"></a>1.1 堆的定义</h2><p>（二叉）堆是一个数组，它可以被看成一个近似的完成二叉树。树上的每一个结点对应数组的一个元素。除了最底层外，该树是完全充满的，而且是从左向右填充。表示堆的数组A两个属性：A.length表示给出元素的个数，heapSize表示有多少个堆元素存储在该数组中。也就是说，虽然A[0..A.length-1]可能存有数据，但只有A[0..A.heapSize]中存放的是堆的有效元素，这里，</p>
 <p><strong>0 &lt;= A.heapSize &lt;= A.length</strong></p>
 <p><strong>树的根节点是A[0]</strong></p>
